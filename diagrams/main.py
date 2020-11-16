@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+
+from diagrams import Cluster, Diagram, Edge
+from diagrams.onprem.analytics import Spark
+from diagrams.onprem.compute import Server
+from diagrams.onprem.database import PostgreSQL
+from diagrams.onprem.inmemory import Redis
+from diagrams.onprem.logging import Fluentd
+from diagrams.onprem.monitoring import Grafana, Prometheus
+from diagrams.onprem.network import Nginx
+from diagrams.onprem.queue import Kafka
+from diagrams.onprem.network import Internet
+from diagrams.generic.network import Router, Switch
+from diagrams.generic.os import LinuxGeneral
+from diagrams.onprem.compute import Server, Nomad
+from diagrams.onprem.container import Docker
+from diagrams.onprem.client import Client, User, Users
+from diagrams.gcp.network import DNS
+from diagrams.onprem.database import Influxdb
+from diagrams.programming.language import Python
+
+def main():
+    with Diagram("Home Network", show=False, filename="output/home_network", outformat="png"):
+        internet = Internet("internet")
+
+        with Cluster("192.168.0.1/24"):
+            router = Router("Synology RT2600ac") # SynologyRouter
+            switch = Switch("Netgear R7000")
+            raspberrypi = Server("Raspberry Pi 4 8GB") # raspberrypi
+            raspberrypi_raspbian = LinuxGeneral("Raspbian")
+
+            devices = Client("Devices")
+
+            internet >> router
+            internet << router
+
+            router >> raspberrypi
+            router >> switch
+
+            router >> devices
+            switch >> devices
+
+            with Cluster("10.0.0.0/28"):
+                raspberrypi_docker = Docker("Docker")
+                service_nginx_proxy = Nginx("nginx-proxy")
+                service_grafana = Grafana("Grafana")
+                service_pi_hole = DNS("Pi-hole")
+                service_portainer = LinuxGeneral("Portainer")
+                service_telegraf = LinuxGeneral("Telegraf")
+                service_sql_influx = Python("sql_influx")
+                service_influxdb = Influxdb("InfluxDB")
+
+                raspberrypi >> raspberrypi_raspbian >> raspberrypi_docker
+
+                raspberrypi_docker >> service_nginx_proxy
+
+                service_nginx_proxy >> service_grafana
+                service_nginx_proxy >> service_pi_hole
+                service_nginx_proxy >> service_portainer
+                service_nginx_proxy >> service_telegraf
+                service_nginx_proxy >> service_influxdb
+
+                service_pi_hole >> service_sql_influx >> service_influxdb
+
+                router >> service_pi_hole
+
+                service_grafana >> Edge(color="firebrick", style="dashed") >> service_influxdb
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,7 @@
+contextvars==2.4
+diagrams==0.17.0
+graphviz==0.13.2
+immutables==0.14
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+pkg-resources==0.0.0
