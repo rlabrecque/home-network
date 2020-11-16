@@ -1,0 +1,214 @@
+version: "3"
+services:
+  pihole:
+    container_name: "pihole"
+    hostname: "pihole"
+    image: "pihole/pihole:v5.1.2"
+    restart: "unless-stopped"
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "8053:80/tcp"
+      - "443:443/tcp"
+    environment:
+      VIRTUAL_HOST: "pihole.raspberrypi.local"
+      VIRTUAL_PORT: "80"
+      ServerIP: "192.168.1.100"
+      TZ: "America/Los_Angeles"
+    volumes:
+      - "pihole-data:/etc/pihole/"
+      - "pihole-data-dnsmasq:/etc/dnsmasq.d/"
+    cap_add:
+      - "NET_ADMIN"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.2"
+    dns:
+      - "127.0.0.1"
+      - "8.8.8.8"
+    extra_hosts:
+      - "raspberrypi.local:192.168.1.100"
+      - "pihole.raspberrypi.local:192.168.1.100"
+      - "grafana.raspberrypi.local:192.168.1.100"
+      - "portainer.raspberrypi.local:192.168.1.100"
+      - "influxdb.raspberrypi.local:192.168.1.100"
+      - "telegraf.raspberrypi.local:192.168.1.100"
+      - "syncthing.raspberrypi.local:192.168.1.100"
+
+  nginx-proxy:
+    container_name: "nginx-proxy"
+    hostname: "nginx-proxy"
+    image: "alexanderkrause/rpi-nginx-proxy:alpine"
+    restart: "always"
+    ports:
+      - "80:80/tcp"
+    environment:
+      DEFAULT_HOST: "pihole.raspberrypi.local"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"
+      - "nginx-proxy-data-certs:/etc/nginx/certs"
+      - "nginx-proxy-data-dhparam:/etc/nginx/dhparam"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.3"
+    dns:
+      - "10.0.0.2"
+    depends_on:
+      - "pihole"
+
+  grafana:
+    container_name: "grafana"
+    hostname: "grafana"
+    image: "grafana/grafana:7.2.1"
+    restart: "unless-stopped"
+    ports:
+      - "3000:3000/tcp"
+    environment:
+      VIRTUAL_HOST: "grafana.raspberrypi.local"
+      VIRTUAL_PORT: "3000"
+      GF_INSTALL_PLUGINS: "grafana-piechart-panel"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/etc/grafana/provisioning/dashboards/Home.json"
+    volumes:
+      - "grafana-data:/var/lib/grafana"
+      - "./grafana/provisioning:/etc/grafana/provisioning"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.4"
+    dns:
+      - "10.0.0.2"
+    depends_on:
+      - "pihole"
+      - "influxdb"
+
+  portainer:
+    container_name: "portainer"
+    hostname: "portainer"
+    image: "portainer/portainer-ce:2.0.0-alpine"
+    restart: "unless-stopped"
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    environment:
+      VIRTUAL_HOST: "portainer.raspberrypi.local"
+      VIRTUAL_PORT: "9000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "portainer-data:/data"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.5"
+    dns:
+      - "10.0.0.2"
+    depends_on:
+      - "pihole"
+
+  influxdb:
+    container_name: "influxdb"
+    hostname: "influxdb"
+    image: "influxdb:1.8"
+    restart: "unless-stopped"
+    ports:
+      - "8086:8086"
+    environment:
+      VIRTUAL_HOST: "influxdb.raspberrypi.local"
+      VIRTUAL_PORT: "8086"
+      INFLUXDB_DATA_MAX_VALUES_PER_TAG: "1000000"
+    volumes:
+      - "influxdb-data:/var/lib/influxdb"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.6"
+    dns:
+      - "10.0.0.2"
+    depends_on:
+      - "pihole"
+
+  telegraf:
+    container_name: "telegraf"
+    hostname: "telegraf"
+    image: "telegraf:1.15"
+    command: "--config-directory /etc/telegraf/telegraf.d"
+    restart: "always"
+    ports:
+      - "9273:9273"
+    environment:
+      VIRTUAL_HOST: "telegraf.raspberrypi.local"
+      VIRTUAL_PORT: "9273"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./telegraf:/etc/telegraf:ro"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.7"
+    dns:
+      - "10.0.0.2"
+    depends_on:
+      - "pihole"
+      - "influxdb"
+
+  sql_influx:
+    container_name: "sql_influx"
+    hostname: "sql_influx"
+    restart: "unless-stopped"
+    build:
+      context: "./sql_influx"
+      network: "host"
+    environment:
+      PYTHONUNBUFFERED: "1"
+      PIHOLE_FTL_DB: "/etc/pihole/pihole-FTL.db"
+      INFLUXDB_HOST: "influxdb.raspberrypi.local"
+      INFLUXDB_PORT: "80"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.8"
+    volumes:
+      - "pihole-data:/etc/pihole:ro"
+    dns:
+      - "10.0.0.2"
+    depends_on:
+      - "pihole"
+      - "influxdb"
+
+  syncthing:
+    container_name: "syncthing"
+    hostname: "syncthing"
+    restart: "unless-stopped"
+    image: "syncthing/syncthing:1.10"
+    ports:
+      - "22000:22000"
+    environment:
+      VIRTUAL_HOST: "syncthing.raspberrypi.local"
+      VIRTUAL_PORT: "8384"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.9"
+    volumes:
+      - "/mnt/external:/var/syncthing"
+    dns:
+      - "10.0.0.2"
+    depends_on:
+      - "pihole"
+
+volumes:
+  nginx-proxy-data-certs:
+    name: "nginx-proxy-data-certs"
+  nginx-proxy-data-dhparam:
+    name: "nginx-proxy-data-dhparam"
+  pihole-data:
+    name: "pihole-data"
+  pihole-data-dnsmasq:
+    name: "pihole-data-dnsmasq"
+  grafana-data:
+    name: "grafana-data"
+  portainer-data:
+    name: "portainer-data"
+  influxdb-data:
+    name: "influxdb-data"
+
+networks:
+  primary:
+    driver: "bridge"
+    ipam:
+      config:
+        - subnet: "10.0.0.0/28"
