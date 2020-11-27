@@ -55,13 +55,13 @@ We use the [Diagrams](https://diagrams.mingrammer.com) as Code library for Pytho
 
 The services folder lives in `~/services` on the Raspberry Pi. We connect to it via SSH with `ssh pi@raspberrypi`.
 
-There is currently no sane way of updating unfortunately. I have just copied things over manually, this needs serious improvement, such as [GitOps](https://medium.com/@bhargavshah2011/overview-of-gitops-31e206e19e4e).
+To push updates to the server we currently run [sync.sh](./raspberry-pi/sync.sh) from the remote machine.
 
-Then run the following:
+Then while connected to the raspberry pi, we run the following:
 
 ```bash
 # Navigate to the services folder
-$ cd services
+$ cd ~/services
 
 # Updates and runs all services
 $ run.sh
