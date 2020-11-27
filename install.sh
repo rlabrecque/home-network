@@ -10,8 +10,46 @@ if [ "$EUID" -ne 0 ]; then
 	exit
 fi
 
+rl-update-upgrade () {
+	echo -e "\e[1mUpdating and Upgrading...\e[0m"
 
-install-build-essentials () {
+	apt-get update
+	echo ""
+
+	apt-get upgrade -y
+	echo ""
+
+	apt-get dist-upgrade -y
+	echo ""
+}
+
+rl-cleanup () {
+	echo -e "\e[1mCleaning up...\e[0m"
+
+	apt-get autoclean -y
+	echo ""
+
+	apt-get autoremove -y
+	echo ""
+}
+
+rl-set-timezone () {
+	# Set local time zone
+	timedatectl set-timezone America/Los_Angeles
+}
+
+rl-set-locale () {
+	# Uncomment en_US.UTF-8 for inclusion in generation
+	sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
+
+	# Generate locale
+	locale-gen
+
+	# Set default locale
+	update-locale LANG=en_US.UTF-8
+}
+
+rl-install-build-essentials () {
 	echo -e "\e[1mInstalling Build Essentials\e[0m"
 
 	apt-get install -y build-essential
@@ -22,11 +60,10 @@ install-build-essentials () {
 	echo ""
 }
 
-
-install-docker () {
+rl-install-docker () {
 	echo -e "\e[1mInstalling docker\e[0m"
 
-	# Installing docker will disconnect ssh
+	# Note: Installing docker will disconnect ssh
 	curl -sSL https://get.docker.com | sh
 	usermod -aG docker pi
 	python3 -m pip install -IU docker-compose
@@ -35,7 +72,7 @@ install-docker () {
 	echo ""
 }
 
-install-python () {
+rl-install-python () {
 	echo -e "\e[1mInstalling Python\e[0m"
 
 	apt-get install -y python3
@@ -46,37 +83,20 @@ install-python () {
 	echo ""
 }
 
-echo -e "\e[1mUpdating and Upgrading...\e[0m"
-apt-get update
-echo ""
-apt-get upgrade -y
-echo ""
-apt-get dist-upgrade -y
-echo ""
+rl-update-upgrade
+
+rl-set-timezone
+
+rl-set-locale
 
 
-# Set local time zone
-timedatectl set-timezone America/Los_Angeles
+rl-install-build-essentials
 
-# Uncomment en_US.UTF-8 for inclusion in generation
-sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
+rl-install-python
 
-# Generate locale
-locale-gen
+rl-install-docker # Requires build-essentials, python
 
-# Set default locale
-update-locale LANG=en_US.UTF-8
 
-install-build-essentials
-
-install-python
-
-install-docker # Requires build-essentials, pytho
-n
-echo -e "\e[1mCleaning up...\e[0m"
-apt-get autoclean -y
-echo ""
-apt-get autoremove -y
-echo ""
+rl-cleanup
 
 echo -e "\e[32mInstalling completed successfully!\e[0m"
