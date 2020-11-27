@@ -22,9 +22,9 @@ Our primary network is running on 192.168.0.1/24.
 
 Both our Synology RT2600ac and Netgear R7000 currently run stock firmware.
 
-The Raspberry Pi runs [Raspberry Pi OS Lite x64](https://www.raspberrypi.org/software/operating-systems/), you can find everything directly installed via the [install.sh](./install.sh) setup/update script. This largely consists of Docker.
+The Raspberry Pi runs [Raspberry Pi OS Lite x64](https://www.raspberrypi.org/software/operating-systems/), you can find everything directly installed via the [install.sh](./raspberry-pi/install.sh) setup/update script. This largely consists of Docker.
 
-We use docker-compose to run all of our [services](./services/). Everything inside docker runs on the 10.0.0.0/28 subnet. Each service can be accessed via `servicename.raspberrypi.local`.
+We use docker-compose to run all of our [services](./raspberry-pi/services/). Everything inside docker runs on the 10.0.0.0/28 subnet. Each service can be accessed via `servicename.raspberrypi.local`.
 
 Current services:
 
@@ -33,16 +33,16 @@ Current services:
 - [nginx-proxy](https://github.com/nginx-proxy/nginx-proxy)
   We have nginx-proxy running as an ingress (in the kubernetes sense) to expose all of our services on port 80, on different domain names. Each service must state what port they expose by using the `VIRTUAL_HOST` and `VIRTUAL_PORT` environment variables. Pi-hole then needs to know about the host names for DNS purposes via the `extra_hosts` list.
 - [Grafana](https://grafana.com)
-  Grafana is our primary data visualizer, log viewer, and alerting tool. Our grafana is currently provisioned via [grafana/provisioning/](./grafana/provisioning/), all changes to dashboards and datasources must be submitted to that directory.
+  Grafana is our primary data visualizer, log viewer, and alerting tool. Our grafana is currently provisioned via [grafana/provisioning/](./raspberry-pi/services/grafana/provisioning/), all changes to dashboards and datasources must be submitted to that directory.
 - [Portainer](https://www.portainer.io)
   We use Portainer to get an overview of our little cluster. I treat it similarly to [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
 - [InfluxDB](https://www.influxdata.com)
   Time series Database, this is the datasource for Grafana.
 - [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/)
-  Telegraf collects and exposes metrics which then pushes into InfluxDB and we can view in Grafana. Telegraf's configuration is located in [telegraf/](./telegraf/).
+  Telegraf collects and exposes metrics which then pushes into InfluxDB and we can view in Grafana. Telegraf's configuration is located in [telegraf/](./raspberry-pi/services/telegraf/).
 - [Syncthing](https://syncthing.net)
   Syncthing is an open source Dropbox/One Drive style file syncronization service. We use this to continously backup our devices to the home server for onsite backup.
-- [sql_influx](./services/sql_influx/)
+- [sql_influx](./raspberry-pi/services/sql_influx/)
   Just some garbage that scrapes Pi-hole metrics into InfluxDB.
 
 ## Diagrams
@@ -53,7 +53,7 @@ We use the [Diagrams](https://diagrams.mingrammer.com) as Code library for Pytho
 
 ## Raspberry Pi Deployment
 
-The services folder currently lives in `~/services` on the Raspberry Pi. We connect to it via SSH with `ssh pi@raspberrypi`.
+The services folder lives in `~/services` on the Raspberry Pi. We connect to it via SSH with `ssh pi@raspberrypi`.
 
 There is currently no sane way of updating unfortunately. I have just copied things over manually, this needs serious improvement, such as [GitOps](https://medium.com/@bhargavshah2011/overview-of-gitops-31e206e19e4e).
 
@@ -78,6 +78,7 @@ $ run.sh
 - Media streaming.
 - Better deployment for services (prior to switching to k3s).
 - Better documentation, diagrams, runbooks, etc.
+- Improve security.
 
 This repository will be kept up to date as I improve my home network.
 
