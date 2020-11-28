@@ -16,7 +16,6 @@
   "editable": true,
   "gnetId": 4220,
   "graphTooltip": 0,
-  "iteration": 1602970014919,
   "links": [
     {
       "icon": "external link",
@@ -30,7 +29,7 @@
   "panels": [
     {
       "cacheTimeout": null,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -68,33 +67,19 @@
           "calcs": [
             "last"
           ],
-          "fields": "/^http_pihole\\.status$/",
+          "fields": "",
           "values": false
         },
-        "textMode": "value"
+        "textMode": "name"
       },
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "groupBy": [],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"status\") FROM \"http_pihole\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "status"
-                ],
-                "type": "field"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "http_pihole_privacy_level",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{status}}",
+          "refId": "A"
         }
       ],
       "timeFrom": null,
@@ -105,7 +90,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -152,49 +137,20 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "groupBy": [
-            {
-              "params": [
-                "1m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "ads_blocked_today"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "http_pihole_ads_blocked_today",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
-      "timeFrom": "1m",
+      "timeFrom": null,
       "title": "Queries Blocked",
       "type": "stat"
     },
     {
       "cacheTimeout": null,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -243,43 +199,14 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "groupBy": [
-            {
-              "params": [
-                "1m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "ads_percentage_today"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "http_pihole_ads_percentage_today",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
-      "timeFrom": "1m",
+      "timeFrom": null,
       "title": "Percent Blocked",
       "type": "stat"
     },
@@ -288,7 +215,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -343,131 +270,28 @@
         }
       ],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Blocked",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "ads_blocked_today"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "increase(http_pihole_ads_blocked_today[$__interval])",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Blocked",
+          "refId": "A"
         },
         {
-          "alias": "Cached",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "queries_cached"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "increase(http_pihole_queries_forwarded[$__interval])",
+          "interval": "",
+          "legendFormat": "Forwarded",
+          "refId": "B"
         },
         {
-          "alias": "Forwarded",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "queries_forwarded"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "increase(http_pihole_queries_cached[$__interval])",
+          "interval": "",
+          "legendFormat": "Cached",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -516,7 +340,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -560,170 +384,28 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "IP",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT difference(last(\"reply_IP\")) FROM \"http_pihole\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "reply_IP"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "increase(http_pihole_reply_IP[$__interval])",
+          "interval": "",
+          "legendFormat": "IP",
+          "refId": "A"
         },
         {
-          "alias": "CNAME",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "reply_CNAME"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "increase(http_pihole_reply_CNAME[$__interval])",
+          "interval": "",
+          "legendFormat": "CNAME",
+          "refId": "B"
         },
         {
-          "alias": "NODATA",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "reply_NODATA"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "increase(http_pihole_reply_NODATA[$__interval])",
+          "interval": "",
+          "legendFormat": "NODATA",
+          "refId": "C"
         },
         {
-          "alias": "NXDOMAIN",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "reply_NXDOMAIN"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [],
-                "type": "non_negative_difference"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "increase(http_pihole_reply_NXDOMAIN[$__interval])",
+          "interval": "",
+          "legendFormat": "NXDOMAIN",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -746,6 +428,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:697",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -754,6 +437,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:698",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -769,114 +453,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 2,
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "dtdurations"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 0,
-        "y": 3
-      },
-      "id": 1,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 1,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.1",
-      "targets": [
-        {
-          "alias": "",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "1m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "system",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"uptime\") FROM \"system\" WHERE (\"host\" =~ /^$Server$/) AND $timeFilter GROUP BY time($interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "uptime"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
-        }
-      ],
-      "timeFrom": "1m",
-      "title": "Uptime",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -923,49 +500,20 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "groupBy": [
-            {
-              "params": [
-                "1m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "dns_queries_today"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "http_pihole_dns_queries_today",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
-      "timeFrom": "1m",
+      "timeFrom": null,
       "title": "Total Queries",
       "type": "stat"
     },
     {
       "cacheTimeout": null,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -1011,7 +559,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^http_pihole\\.last$/",
+          "fields": "",
           "values": false
         },
         "textMode": "value"
@@ -1019,43 +567,14 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "groupBy": [
-            {
-              "params": [
-                "1m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "domains_being_blocked"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "http_pihole_domains_being_blocked",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
-      "timeFrom": "1m",
+      "timeFrom": null,
       "timeShift": null,
       "title": "Domains on Blocklist",
       "type": "stat"
@@ -1065,7 +584,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "decimals": null,
       "fieldConfig": {
         "defaults": {
@@ -1113,80 +632,22 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Queries Cached",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"queries_cached\") FROM \"http_pihole\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "queries_cached"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "http_pihole_queries_cached",
+          "interval": "",
+          "legendFormat": "Queries Cached",
+          "refId": "A"
         },
         {
-          "alias": "Queries Forwarded",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "http_pihole",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "queries_forwarded"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "http_pihole_queries_forwarded",
+          "interval": "",
+          "legendFormat": "Queries Forwarded",
+          "refId": "B"
+        },
+        {
+          "expr": "http_pihole_ads_blocked_today",
+          "interval": "",
+          "legendFormat": "Queries Blocked",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -1775,184 +1236,333 @@
       "title": "Forwarded Destinations",
       "type": "grafana-piechart-panel",
       "valueName": "total"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "hiddenSeries": false,
+      "id": 56,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.2.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:2318",
+          "alias": "Result Code",
+          "bars": true,
+          "color": "#F2495C",
+          "legend": false,
+          "nullPointMode": "null",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "dns_query_query_time_ms{server=\"pihole\"}",
+          "interval": "",
+          "legendFormat": "{{domain}}",
+          "refId": "A"
+        },
+        {
+          "expr": "max(dns_query_result_code{server=\"pihole\"})",
+          "interval": "",
+          "legendFormat": "Result Code",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [
+        {
+          "$$hashKey": "object:2519",
+          "colorMode": "warning",
+          "fill": false,
+          "line": true,
+          "op": "gt",
+          "value": 100,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "DNS Query Time",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:108",
+          "decimals": 0,
+          "format": "ms",
+          "label": "Query Time",
+          "logBase": 1,
+          "max": "500",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:109",
+          "decimals": 0,
+          "format": "short",
+          "label": "0 = Success, 1 = Timeout, 2 = Error",
+          "logBase": 1,
+          "max": "2",
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 1,
+              "text": "",
+              "to": "",
+              "type": 1
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Packet Loss"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ping.distinct {url: 8.8.8.8}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "8.8.8.8"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ping.distinct {url: google.com}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "google.com"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ping.distinct {url: reddit.com}"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "reddit.com"
+              }
+            ]
+          }
+        ]
+      },
+      "fill": 1,
+      "fillGradient": 10,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "hiddenSeries": false,
+      "id": 58,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.2.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "$$hashKey": "object:510",
+          "alias": "Packet Loss",
+          "color": "#C4162A",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "ping_average_response_ms",
+          "interval": "",
+          "legendFormat": "{{url}}",
+          "refId": "A"
+        },
+        {
+          "expr": "ping_percent_packet_loss",
+          "interval": "",
+          "legendFormat": "Packet Loss",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Ping Response Time",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transformations": [],
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:266",
+          "format": "ms",
+          "label": "Response Time",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:267",
+          "format": "percent",
+          "label": "Packet Loss",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": 0
+      }
     }
   ],
-  "refresh": "30s",
+  "refresh": false,
   "schemaVersion": 26,
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": [
-      {
-        "allValue": "",
-        "current": {
-          "selected": false,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": "InfluxDB",
-        "definition": "",
-        "hide": 0,
-        "includeAll": true,
-        "label": null,
-        "multi": true,
-        "name": "Server",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"host\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
-        "datasource": "InfluxDB",
-        "definition": "",
-        "hide": 0,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "nio",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"interface\"",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": "InfluxDB",
-        "definition": "",
-        "hide": 0,
-        "includeAll": true,
-        "label": null,
-        "multi": true,
-        "name": "disk",
-        "options": [],
-        "query": "SHOW TAG VALUES WITH KEY=\"name\"",
-        "refresh": 1,
-        "regex": ".*",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "auto": true,
-        "auto_count": 30,
-        "auto_min": "10s",
-        "current": {
-          "selected": false,
-          "text": "1h",
-          "value": "1h"
-        },
-        "hide": 0,
-        "label": null,
-        "name": "Interval",
-        "options": [
-          {
-            "selected": false,
-            "text": "auto",
-            "value": "$__auto_interval_Interval"
-          },
-          {
-            "selected": false,
-            "text": "10s",
-            "value": "10s"
-          },
-          {
-            "selected": false,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
-            "text": "10m",
-            "value": "10m"
-          },
-          {
-            "selected": false,
-            "text": "30m",
-            "value": "30m"
-          },
-          {
-            "selected": true,
-            "text": "1h",
-            "value": "1h"
-          },
-          {
-            "selected": false,
-            "text": "6h",
-            "value": "6h"
-          },
-          {
-            "selected": false,
-            "text": "12h",
-            "value": "12h"
-          },
-          {
-            "selected": false,
-            "text": "1d",
-            "value": "1d"
-          },
-          {
-            "selected": false,
-            "text": "7d",
-            "value": "7d"
-          },
-          {
-            "selected": false,
-            "text": "14d",
-            "value": "14d"
-          },
-          {
-            "selected": false,
-            "text": "30d",
-            "value": "30d"
-          }
-        ],
-        "query": "10s, 1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
-        "queryValue": "",
-        "refresh": 2,
-        "skipUrlSync": false,
-        "type": "interval"
-      }
-    ]
+    "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -1983,5 +1593,5 @@
   "timezone": "browser",
   "title": "Network",
   "uid": "cSYMrq5Gz",
-  "version": 2
+  "version": 12
 }

@@ -22,9 +22,6 @@ $ sudo apt install graphviz
 ## Generating
 
 ```bash
-# Activate the virtual environment with
-$ source venv/bin/activate
-
-# Run main.py
-$ ./main.py
+# Execute generate.py
+$ ./generate.py
 ```

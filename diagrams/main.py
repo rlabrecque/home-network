@@ -16,7 +16,6 @@ from diagrams.onprem.compute import Server, Nomad
 from diagrams.onprem.container import Docker
 from diagrams.onprem.client import Client, User, Users
 from diagrams.gcp.network import DNS
-from diagrams.onprem.database import Influxdb
 from diagrams.programming.language import Python
 
 def main():
@@ -27,7 +26,7 @@ def main():
             router = Router("Synology RT2600ac") # SynologyRouter
             switch = Switch("Netgear R7000")
             raspberrypi = Server("Raspberry Pi 4 8GB") # raspberrypi
-            raspberrypi_raspbian = LinuxGeneral("Raspbian")
+            raspberrypi_docker = Docker("Docker")
 
             devices = Client("Devices")
 
@@ -40,17 +39,16 @@ def main():
             router >> devices
             switch >> devices
 
+
             with Cluster("10.0.0.0/28"):
-                raspberrypi_docker = Docker("Docker")
                 service_nginx_proxy = Nginx("nginx-proxy")
                 service_grafana = Grafana("Grafana")
                 service_pi_hole = DNS("Pi-hole")
                 service_portainer = LinuxGeneral("Portainer")
                 service_telegraf = LinuxGeneral("Telegraf")
-                service_sql_influx = Python("sql_influx")
-                service_influxdb = Influxdb("InfluxDB")
+                service_prometheus = Prometheus("Prometheus")
 
-                raspberrypi >> raspberrypi_raspbian >> raspberrypi_docker
+                raspberrypi >> raspberrypi_docker
 
                 raspberrypi_docker >> service_nginx_proxy
 
@@ -58,13 +56,10 @@ def main():
                 service_nginx_proxy >> service_pi_hole
                 service_nginx_proxy >> service_portainer
                 service_nginx_proxy >> service_telegraf
-                service_nginx_proxy >> service_influxdb
 
-                service_pi_hole >> service_sql_influx >> service_influxdb
+                service_prometheus >> Edge(color="firebrick", style="dashed") >> service_telegraf
 
-                router >> service_pi_hole
-
-                service_grafana >> Edge(color="firebrick", style="dashed") >> service_influxdb
+                service_grafana >> Edge(color="firebrick", style="dashed") >> service_prometheus
 
 if __name__ == "__main__":
     main()

@@ -32,9 +32,9 @@ services:
       - "pihole.raspberrypi.local:192.168.1.100"
       - "grafana.raspberrypi.local:192.168.1.100"
       - "portainer.raspberrypi.local:192.168.1.100"
-      - "influxdb.raspberrypi.local:192.168.1.100"
       - "telegraf.raspberrypi.local:192.168.1.100"
       - "syncthing.raspberrypi.local:192.168.1.100"
+      - "prometheus.raspberrypi.local:192.168.1.100"
 
   nginx-proxy:
     container_name: "nginx-proxy"
@@ -79,7 +79,7 @@ services:
       - "10.0.0.2"
     depends_on:
       - "pihole"
-      - "influxdb"
+      - "prometheus"
 
   portainer:
     container_name: "portainer"
@@ -103,27 +103,6 @@ services:
     depends_on:
       - "pihole"
 
-  influxdb:
-    container_name: "influxdb"
-    hostname: "influxdb"
-    image: "influxdb:1.8"
-    restart: "unless-stopped"
-    ports:
-      - "8086:8086"
-    environment:
-      VIRTUAL_HOST: "influxdb.raspberrypi.local"
-      VIRTUAL_PORT: "8086"
-      INFLUXDB_DATA_MAX_VALUES_PER_TAG: "1000000"
-    volumes:
-      - "influxdb-data:/var/lib/influxdb"
-    networks:
-      primary:
-        ipv4_address: "10.0.0.6"
-    dns:
-      - "10.0.0.2"
-    depends_on:
-      - "pihole"
-
   telegraf:
     container_name: "telegraf"
     hostname: "telegraf"
@@ -140,35 +119,11 @@ services:
       - "./telegraf:/etc/telegraf:ro"
     networks:
       primary:
-        ipv4_address: "10.0.0.7"
+        ipv4_address: "10.0.0.6"
     dns:
       - "10.0.0.2"
     depends_on:
       - "pihole"
-      - "influxdb"
-
-  sql_influx:
-    container_name: "sql_influx"
-    hostname: "sql_influx"
-    restart: "unless-stopped"
-    build:
-      context: "./sql_influx"
-      network: "host"
-    environment:
-      PYTHONUNBUFFERED: "1"
-      PIHOLE_FTL_DB: "/etc/pihole/pihole-FTL.db"
-      INFLUXDB_HOST: "influxdb.raspberrypi.local"
-      INFLUXDB_PORT: "80"
-    networks:
-      primary:
-        ipv4_address: "10.0.0.8"
-    volumes:
-      - "pihole-data:/etc/pihole:ro"
-    dns:
-      - "10.0.0.2"
-    depends_on:
-      - "pihole"
-      - "influxdb"
 
   syncthing:
     container_name: "syncthing"
@@ -182,9 +137,30 @@ services:
       VIRTUAL_PORT: "8384"
     networks:
       primary:
-        ipv4_address: "10.0.0.9"
+        ipv4_address: "10.0.0.7"
     volumes:
       - "/mnt/external:/var/syncthing"
+    dns:
+      - "10.0.0.2"
+    depends_on:
+      - "pihole"
+
+  prometheus:
+    container_name: "prometheus"
+    hostname: "prometheus"
+    restart: "unless-stopped"
+    image: "prom/prometheus:latest"
+    ports:
+      - "9090:9090"
+    environment:
+      VIRTUAL_HOST: "prometheus.raspberrypi.local"
+      VIRTUAL_PORT: "9090"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.8"
+    volumes:
+      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "prometheus-data:/prometheus"
     dns:
       - "10.0.0.2"
     depends_on:
@@ -203,8 +179,8 @@ volumes:
     name: "grafana-data"
   portainer-data:
     name: "portainer-data"
-  influxdb-data:
-    name: "influxdb-data"
+  prometheus-data:
+    name: "prometheus-data"
 
 networks:
   primary:

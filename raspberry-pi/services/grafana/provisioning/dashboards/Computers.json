@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 4220,
   "graphTooltip": 0,
-  "iteration": 1602866545109,
+  "iteration": 1606532205298,
   "links": [
     {
       "icon": "external link",
@@ -37,7 +37,7 @@
         "rgba(237, 129, 40, 0.89)",
         "rgba(50, 172, 45, 0.97)"
       ],
-      "datasource": "InfluxDB",
+      "datasource": null,
       "decimals": 1,
       "editable": true,
       "error": false,
@@ -98,48 +98,10 @@
       "tableColumn": "",
       "targets": [
         {
-          "alias": "",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "system",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "uptime"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "system_uptime{host=\"telegraf\"}",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
       "thresholds": "",
@@ -157,7 +119,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -220,59 +182,11 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "cpu",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "usage_idle"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "* -1 + 100"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            },
-            {
-              "condition": "AND",
-              "key": "cpu",
-              "operator": "=",
-              "value": "cpu-total"
-            }
-          ]
+          "expr": "cpu_usage_idle{host=\"$Server\", cpu=\"cpu-total\"} * -1 + 100",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
       "title": "CPU Usage",
@@ -280,7 +194,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -344,49 +258,12 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "temp",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"temp\") FROM \"temp\" WHERE (\"host\" =~ /^$Server$/) AND $timeFilter GROUP BY time($Interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "temp"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "temp_temp{host=\"$Server\"}\n",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
       "title": "CPU Temperature",
@@ -394,7 +271,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -457,49 +334,11 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "mem",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(used_percent) FROM \"mem\" WHERE \"host\" =~ /^$host$/",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "used_percent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "mem_used_percent{host=\"$Server\"}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
       "title": "Memory Usage",
@@ -507,7 +346,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -550,7 +389,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^Disk Used Percent$/",
+          "fields": "",
           "values": false
         },
         "showThresholdLabels": false,
@@ -561,44 +400,12 @@
       "repeatDirection": "h",
       "targets": [
         {
-          "alias": "Disk Used Percent",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "disk",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"used\") FROM \"disk\" WHERE $timeFilter GROUP BY time($Interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "used_percent"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "disk_used_percent{host=\"$Server\", path=\"/etc/telegraf\"}",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
       "title": "Disk Used",
@@ -617,7 +424,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -667,304 +474,41 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "System",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "cpu",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "usage_system"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            },
-            {
-              "condition": "AND",
-              "key": "cpu",
-              "operator": "=",
-              "value": "cpu-total"
-            }
-          ]
+          "expr": "cpu_usage_system{host=\"$Server\", cpu=\"cpu-total\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "System",
+          "refId": "A"
         },
         {
-          "alias": "User",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "cpu",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "usage_user"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            },
-            {
-              "condition": "AND",
-              "key": "cpu",
-              "operator": "=",
-              "value": "cpu-total"
-            }
-          ]
+          "expr": "cpu_usage_user{host=\"$Server\", cpu=\"cpu-total\"}",
+          "interval": "",
+          "legendFormat": "User",
+          "refId": "B"
         },
         {
-          "alias": "Nice",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "cpu",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "usage_nice"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            },
-            {
-              "condition": "AND",
-              "key": "cpu",
-              "operator": "=",
-              "value": "cpu-total"
-            }
-          ]
+          "expr": "cpu_usage_nice{host=\"$Server\", cpu=\"cpu-total\"}",
+          "interval": "",
+          "legendFormat": "Nice",
+          "refId": "C"
         },
         {
-          "alias": "Interrupt",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "cpu",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "usage_irq"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            },
-            {
-              "condition": "AND",
-              "key": "cpu",
-              "operator": "=",
-              "value": "cpu-total"
-            }
-          ]
+          "expr": "cpu_usage_irq{host=\"$Server\", cpu=\"cpu-total\"}",
+          "interval": "",
+          "legendFormat": "Interupt",
+          "refId": "D"
         },
         {
-          "alias": "Wait",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "cpu",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "usage_iowait"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            },
-            {
-              "condition": "AND",
-              "key": "cpu",
-              "operator": "=",
-              "value": "cpu-total"
-            }
-          ]
+          "expr": "cpu_usage_iowait{host=\"$Server\", cpu=\"cpu-total\"}",
+          "interval": "",
+          "legendFormat": "Wait",
+          "refId": "E"
         },
         {
-          "alias": "SoftIRQ",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "cpu",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "usage_softirq"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            },
-            {
-              "condition": "AND",
-              "key": "cpu",
-              "operator": "=",
-              "value": "cpu-total"
-            }
-          ]
+          "expr": "cpu_usage_softirq{host=\"$Server\", cpu=\"cpu-total\"}",
+          "interval": "",
+          "legendFormat": "SoftIRQ",
+          "refId": "F"
         }
       ],
       "thresholds": [
@@ -1035,7 +579,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -1067,6 +611,7 @@
       },
       "hiddenSeries": false,
       "id": 21,
+      "interval": "",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -1105,94 +650,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "CPU Temperature",
-          "groupBy": [
-            {
-              "params": [
-                "1m"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "temp",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"cpu\")  / 1000 FROM \"exec_pi_temp\" WHERE $timeFilter GROUP BY time(1m) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  " / 1000"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "temp_temp{host=\"$Server\", sensor=\"cpu_thermal_input\"}",
+          "interval": "",
+          "legendFormat": "CPU Temperature",
+          "refId": "A"
         },
         {
-          "alias": "CPU Usage",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "cpu",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"usage_idle\") FROM \"cpu\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "usage_idle"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  "* -1 + 100"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": []
+          "expr": "cpu_usage_idle{host=\"$Server\", cpu=\"cpu-total\"} * -1 + 100",
+          "interval": "",
+          "legendFormat": "CPU Usage",
+          "refId": "B"
         }
       ],
       "thresholds": [
@@ -1266,7 +733,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -1316,136 +783,22 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "1 Minute Average",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "system",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "load1"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "system_load1{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "1 Minute Average",
+          "refId": "A"
         },
         {
-          "alias": "5 Minute Average",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "system",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "load5"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "system_load5{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "5 Minute Average",
+          "refId": "B"
         },
         {
-          "alias": "15 Minute Average",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "system",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "load15"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "system_load15{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "15 Minute Average",
+          "refId": "C"
         }
       ],
       "thresholds": [
@@ -1512,7 +865,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "decimals": null,
       "editable": true,
       "error": false,
@@ -1565,180 +918,28 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Used",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "mem",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "used"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "mem_used{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "Used",
+          "refId": "A"
         },
         {
-          "alias": "Buffered",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "mem",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "buffered"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "mem_buffered{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "Buffered",
+          "refId": "B"
         },
         {
-          "alias": "Cached",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "mem",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "cached"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "mem_cached{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "Cached",
+          "refId": "C"
         },
         {
-          "alias": "Free",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "mem",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "free"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "mem_free{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "Free",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -1792,7 +993,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -1852,103 +1053,16 @@
       "steppedLine": true,
       "targets": [
         {
-          "alias": "Processes Forked",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "kernel",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "processes_forked"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [],
-                "type": "difference"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "rate(kernel_processes_forked{host=\"$Server\"}[$__rate_interval])",
+          "interval": "",
+          "legendFormat": "Processes Forked",
+          "refId": "A"
         },
         {
-          "alias": "Total Threads",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "processes",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT moving_average(mean(\"total_threads\"), 10) FROM \"processes\" WHERE (\"host\" =~ /^$Server$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "total_threads"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [
-                  10
-                ],
-                "type": "moving_average"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "processes_total_threads{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "Total Threads",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -2002,7 +1116,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -2052,103 +1166,16 @@
       "steppedLine": true,
       "targets": [
         {
-          "alias": "Interrupts",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "kernel",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT difference(mean(\"interrupts\")) FROM \"kernel\" WHERE (\"host\" =~ /^$Server$/) AND $timeFilter GROUP BY time($Interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "interrupts"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [],
-                "type": "difference"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "rate(kernel_interrupts{host=\"$Server\"}[$__rate_interval])",
+          "interval": "",
+          "legendFormat": "Interrupts",
+          "refId": "A"
         },
         {
-          "alias": "Context Switches",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "kernel",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT difference(mean(\"context_switches\")) FROM \"kernel\" WHERE (\"host\" =~ /^$Server$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "context_switches"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [],
-                "type": "difference"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "rate(kernel_context_switches{host=\"$Server\"}[$__rate_interval])",
+          "interval": "",
+          "legendFormat": "Context Switches",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -2203,7 +1230,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -2253,137 +1280,22 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Blocked",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "processes",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "blocked"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "processes_blocked{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "Blocked",
+          "refId": "A"
         },
         {
-          "alias": "Running",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "processes",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "running"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "processes_running{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "Running",
+          "refId": "B"
         },
         {
-          "alias": "Sleep",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "processes",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "sleeping"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            }
-          ]
+          "expr": "processes_sleeping{host=\"$Server\"}",
+          "interval": "",
+          "legendFormat": "Sleeping",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -2395,7 +1307,7 @@
         "msResolution": true,
         "shared": true,
         "sort": 0,
-        "value_type": "cumulative"
+        "value_type": "individual"
       },
       "type": "graph",
       "xaxis": {
@@ -2435,7 +1347,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "InfluxDB",
+      "datasource": null,
       "editable": true,
       "error": false,
       "fieldConfig": {
@@ -2483,112 +1395,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Read",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "diskio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "read_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [],
-                "type": "difference"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=~",
-              "value": "/^$disk$/"
-            }
-          ]
+          "expr": "rate(diskio_read_bytes{host=\"$Server\", name=~\"$disk\"}[$__rate_interval])",
+          "interval": "",
+          "legendFormat": "Read: {{name}}",
+          "refId": "A"
         },
         {
-          "alias": "Write",
-          "dsType": "InfluxDB",
-          "groupBy": [
-            {
-              "params": [
-                "$Interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "diskio",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "write_bytes"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [],
-                "type": "difference"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$Server$/"
-            },
-            {
-              "condition": "AND",
-              "key": "name",
-              "operator": "=~",
-              "value": "/^$disk$/"
-            }
-          ]
+          "expr": "rate(diskio_write_bytes{host=\"$Server\", name=~\"$disk\"}[$__rate_interval])",
+          "interval": "",
+          "legendFormat": "Write: {{name}}",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -2634,577 +1450,9 @@
         "align": false,
         "alignLevel": null
       }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 0,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 12,
-        "x": 0,
-        "y": 24
-      },
-      "hiddenSeries": false,
-      "id": 29,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": true,
-        "min": true,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.2.1",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "$$hashKey": "object:2318",
-          "alias": "Result Code",
-          "bars": true,
-          "color": "#F2495C",
-          "legend": false,
-          "nullPointMode": "null",
-          "yaxis": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "google.com",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "dns_query",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"query_time_ms\") FROM \"dns_query\" WHERE (\"server\" = '8.8.8.8') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "query_time_ms"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "server",
-              "operator": "=",
-              "value": "pihole"
-            },
-            {
-              "condition": "AND",
-              "key": "domain",
-              "operator": "=",
-              "value": "google.com"
-            }
-          ]
-        },
-        {
-          "alias": "reddit.com",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "dns_query",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"query_time_ms\") FROM \"dns_query\" WHERE (\"server\" = '8.8.8.8') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "query_time_ms"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "server",
-              "operator": "=",
-              "value": "pihole"
-            },
-            {
-              "condition": "AND",
-              "key": "domain",
-              "operator": "=",
-              "value": "reddit.com"
-            }
-          ]
-        },
-        {
-          "alias": "rileylabrecque.com",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
-          "hide": false,
-          "measurement": "dns_query",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"query_time_ms\") FROM \"dns_query\" WHERE (\"server\" = '8.8.8.8') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "query_time_ms"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "server",
-              "operator": "=",
-              "value": "pihole"
-            }
-          ]
-        },
-        {
-          "alias": "Result Code",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "dns_query",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"result_code\") FROM \"dns_query\" WHERE (\"server\" = 'pihole' AND \"domain\" = 'rileylabrecque.com') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "result_code"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "max"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "server",
-              "operator": "=",
-              "value": "pihole"
-            }
-          ]
-        }
-      ],
-      "thresholds": [
-        {
-          "$$hashKey": "object:2519",
-          "colorMode": "warning",
-          "fill": false,
-          "line": true,
-          "op": "gt",
-          "value": 100,
-          "yaxis": "left"
-        }
-      ],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "DNS Query Time",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:108",
-          "decimals": 0,
-          "format": "ms",
-          "label": "Query Time",
-          "logBase": 1,
-          "max": "500",
-          "min": "0",
-          "show": true
-        },
-        {
-          "$$hashKey": "object:109",
-          "decimals": 0,
-          "format": "short",
-          "label": "0 = Success, 1 = Timeout, 2 = Error",
-          "logBase": 1,
-          "max": "2",
-          "min": "0",
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "InfluxDB",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "from": "",
-              "id": 1,
-              "text": "",
-              "to": "",
-              "type": 1
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ms"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Packet Loss"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percent"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ping.distinct {url: 8.8.8.8}"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "8.8.8.8"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ping.distinct {url: google.com}"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "google.com"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "ping.distinct {url: reddit.com}"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "reddit.com"
-              }
-            ]
-          }
-        ]
-      },
-      "fill": 1,
-      "fillGradient": 10,
-      "gridPos": {
-        "h": 6,
-        "w": 12,
-        "x": 12,
-        "y": 24
-      },
-      "hiddenSeries": false,
-      "id": 27,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": false,
-        "hideZero": false,
-        "max": true,
-        "min": true,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.2.1",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "$$hashKey": "object:510",
-          "alias": "Packet Loss",
-          "color": "#C4162A",
-          "yaxis": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "url"
-              ],
-              "type": "tag"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "ping",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT mean(\"average_response_ms\") FROM \"ping\" WHERE $timeFilter GROUP BY time($__interval), \"url\" fill(null)",
-          "rawQuery": false,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "average_response_ms"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "Packet Loss",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "ping",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT distinct(\"percent_packet_loss\") FROM \"ping\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": false,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "percent_packet_loss"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Ping Response Time",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transformations": [],
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:266",
-          "format": "ms",
-          "label": "Response Time",
-          "logBase": 1,
-          "max": "100",
-          "min": "0",
-          "show": true
-        },
-        {
-          "$$hashKey": "object:267",
-          "format": "percent",
-          "label": "Packet Loss",
-          "logBase": 1,
-          "max": "100",
-          "min": "0",
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": true,
-        "alignLevel": 0
-      }
     }
   ],
-  "refresh": "5s",
+  "refresh": "",
   "schemaVersion": 26,
   "style": "dark",
   "tags": [],
@@ -3213,23 +1461,19 @@
       {
         "allValue": "",
         "current": {
-          "selected": false,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "selected": true,
+          "text": "raspberrypi",
+          "value": "raspberrypi"
         },
-        "datasource": "InfluxDB",
-        "definition": "",
+        "datasource": "Prometheus",
+        "definition": "label_values(host)",
         "hide": 0,
-        "includeAll": true,
+        "includeAll": false,
         "label": null,
-        "multi": true,
+        "multi": false,
         "name": "Server",
         "options": [],
-        "query": "SHOW TAG VALUES WITH KEY = \"host\"",
+        "query": "label_values(host)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -3243,7 +1487,8 @@
       {
         "allValue": null,
         "current": {
-          "selected": false,
+          "selected": true,
+          "tags": [],
           "text": [
             "All"
           ],
@@ -3251,15 +1496,15 @@
             "$__all"
           ]
         },
-        "datasource": "InfluxDB",
-        "definition": "",
+        "datasource": "Prometheus",
+        "definition": "label_values(name)",
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "disk",
         "options": [],
-        "query": "SHOW TAG VALUES WITH KEY=\"name\"",
+        "query": "label_values(name)",
         "refresh": 1,
         "regex": ".*",
         "skipUrlSync": false,
@@ -3353,7 +1598,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -3384,5 +1629,5 @@
   "timezone": "browser",
   "title": "Computers",
   "uid": "OLbRKlezz",
-  "version": 7
+  "version": 5
 }

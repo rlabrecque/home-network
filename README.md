@@ -36,14 +36,12 @@ Current services:
   Grafana is our primary data visualizer, log viewer, and alerting tool. Our grafana is currently provisioned via [grafana/provisioning/](./raspberry-pi/services/grafana/provisioning/), all changes to dashboards and datasources must be submitted to that directory.
 - [Portainer](https://www.portainer.io)
   We use Portainer to get an overview of our little cluster. I treat it similarly to [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
-- [InfluxDB](https://www.influxdata.com)
-  Time series Database, this is the datasource for Grafana.
+- [Prometheus](https://prometheus.io/)
+  Time series Database, this is the datasource for Grafana. It scrapes point-in-time metrics from telegraf and stores them.
 - [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/)
-  Telegraf collects and exposes metrics which then pushes into InfluxDB and we can view in Grafana. Telegraf's configuration is located in [telegraf/](./raspberry-pi/services/telegraf/).
+  Telegraf collects and exposes metrics which are then scraped via Prometheus and we can then view in Grafana. Telegraf's configuration is located in [telegraf/](./raspberry-pi/services/telegraf/).
 - [Syncthing](https://syncthing.net)
   Syncthing is an open source Dropbox/One Drive style file syncronization service. We use this to continously backup our devices to the home server for onsite backup.
-- [sql_influx](./raspberry-pi/services/sql_influx/)
-  Just some garbage that scrapes Pi-hole metrics into InfluxDB.
 
 ## Diagrams
 
