@@ -7,4 +7,4 @@ IFS=$'\n\t'
 
 # Copies the services folder over to the raspberry pi.
 
-rsync -r ./services/ pi@raspberrypi:~/services
+rsync -r ./services/ pi@raspberrypi.local:~/services
