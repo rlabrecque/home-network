@@ -33,6 +33,11 @@ rl-cleanup () {
 	echo ""
 }
 
+rl-join-systemd-journal-group () {
+	# Join the systemd-journal group to get access to system wide journal.
+	usermod -a -G systemd-journal pi
+}
+
 rl-set-timezone () {
 	# Set local time zone
 	timedatectl set-timezone America/Los_Angeles
@@ -82,6 +87,8 @@ rl-install-python () {
 	echo -e "\e[32mSuccess!\e[0m"
 	echo ""
 }
+
+rl-join-systemd-journal-group
 
 rl-update-upgrade
 
