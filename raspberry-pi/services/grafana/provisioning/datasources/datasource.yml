@@ -12,3 +12,10 @@ datasources:
       tlsAuth: false
       tlsAuthWithCACert: false
     version: 1
+
+  - name: Loki
+    type: loki
+    access: proxy
+    editable: false
+    url: http://loki.raspberrypi.local
+    version: 1

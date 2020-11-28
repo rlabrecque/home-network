@@ -26,7 +26,7 @@ The Raspberry Pi runs [Raspberry Pi OS Lite x64](https://www.raspberrypi.org/sof
 
 We use docker-compose to run all of our [services](./raspberry-pi/services/). Everything inside docker runs on the 10.0.0.0/28 subnet. Each service can be accessed via `servicename.raspberrypi.local`.
 
-Current services:
+Services:
 
 - [Pi-hole](https://pi-hole.net)
   We run Pi-hole as our primary DNS server for adblocking at the DNS level. This then passes through to 8.8.8.8, Google's DNS.
@@ -42,6 +42,10 @@ Current services:
   Telegraf collects and exposes metrics which are then scraped via Prometheus and we can then view in Grafana. Telegraf's configuration is located in [telegraf/](./raspberry-pi/services/telegraf/).
 - [Syncthing](https://syncthing.net)
   Syncthing is an open source Dropbox/One Drive style file syncronization service. We use this to continously backup our devices to the home server for onsite backup.
+- [Loki](https://grafana.com/oss/loki/)
+  "Like Prometheus, but for logs." This indexes and stores logs for later viewing and alerting with Grafana.
+- [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/)
+  Watches and parses the logs via systemd-journal and passes them to Loki for storage.
 
 ## Diagrams
 
@@ -67,10 +71,10 @@ $ run.sh
 
 ## Future Work
 
-- Start rack mounting everything.
+- Rack mounting everything.
 - Get a standalone firewall and switch.
 - Migrate towards Kubernetes with [k3s](https://k3s.io/) and multiple raspberry pi's.
-- Setup additional monitoring.
+- Setup alerting.
 - Improved offsite backup.
 - VPN support. (Wireguard?)
 - Media streaming.

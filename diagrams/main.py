@@ -5,7 +5,7 @@ from diagrams.onprem.analytics import Spark
 from diagrams.onprem.compute import Server
 from diagrams.onprem.database import PostgreSQL
 from diagrams.onprem.inmemory import Redis
-from diagrams.onprem.logging import Fluentd
+from diagrams.onprem.logging import Loki
 from diagrams.onprem.monitoring import Grafana, Prometheus
 from diagrams.onprem.network import Nginx
 from diagrams.onprem.queue import Kafka
@@ -39,7 +39,6 @@ def main():
             router >> devices
             switch >> devices
 
-
             with Cluster("10.0.0.0/28"):
                 service_nginx_proxy = Nginx("nginx-proxy")
                 service_grafana = Grafana("Grafana")
@@ -47,6 +46,8 @@ def main():
                 service_portainer = LinuxGeneral("Portainer")
                 service_telegraf = LinuxGeneral("Telegraf")
                 service_prometheus = Prometheus("Prometheus")
+                service_loki = Loki("Loki")
+                service_promtail = Loki("Promtail")
 
                 raspberrypi >> raspberrypi_docker
 
@@ -56,10 +57,16 @@ def main():
                 service_nginx_proxy >> service_pi_hole
                 service_nginx_proxy >> service_portainer
                 service_nginx_proxy >> service_telegraf
+                service_nginx_proxy >> service_prometheus
+                service_nginx_proxy >> service_loki
+                service_nginx_proxy >> service_promtail
 
-                service_prometheus >> Edge(color="firebrick", style="dashed") >> service_telegraf
+                service_prometheus >> Edge(label="collect metrics", color="firebrick", style="dashed") >> service_telegraf
 
-                service_grafana >> Edge(color="firebrick", style="dashed") >> service_prometheus
+                service_promtail >> Edge(label="push logs", color="firebrick", style="dashed") >> service_loki
+
+                service_grafana >> Edge(label="query", color="firebrick", style="dashed") >> service_prometheus
+                service_grafana >> Edge(label="query", color="firebrick", style="dashed") >> service_loki
 
 if __name__ == "__main__":
     main()
