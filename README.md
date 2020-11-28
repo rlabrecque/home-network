@@ -10,6 +10,8 @@ I want to be able to have answers to questions such as:
 - Is the Freezer working correctly?
 - What is our air quality like?
 
+![Grafana Computers](./readme/grafana-computers.png)
+
 ## Current Hardware
 
 Our current ISP is [Wave-G](https://waveg.wavebroadband.com) where we have 1Gbit down & up. The fiber is terminated in our apartment building's electrical closet on each floor, it's then run to our unit via CAT-5e where it's terminated with a female ethernet port. From that we then have have CAT-5e going into our [Synology RT2600ac](https://www.synology.com/en-us/products/RT2600ac) router which acts as our Firewall, DHCP host, switch, and Wireless 5GHz WiFi access point. The RT2600ac feeds into a number of ethernet wall-ports which are all around our apartment. We use a [Netgear R7000](https://www.netgear.com/home/products/networking/wifi-routers/R7000.aspx) as a switch in our tiny livingroom/office.
