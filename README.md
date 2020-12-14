@@ -35,19 +35,19 @@ Services:
 - [nginx-proxy](https://github.com/nginx-proxy/nginx-proxy)
   We have nginx-proxy running as an ingress (in the kubernetes sense) to expose all of our services on port 80, on different domain names. Each service must state what port they expose by using the `VIRTUAL_HOST` and `VIRTUAL_PORT` environment variables. Pi-hole then needs to know about the host names for DNS purposes via the `extra_hosts` list.
 - [Grafana](https://grafana.com)
-  Grafana is our primary data visualizer, log viewer, and alerting tool. Our grafana is currently provisioned via [grafana/provisioning/](./raspberry-pi/services/grafana/provisioning/), all changes to dashboards and datasources must be submitted to that directory.
+  Grafana is our primary data visualizer, log viewer, and alerting tool. Our grafana is provisioned via the configuration files located [here](./raspberry-pi/services/grafana/provisioning/), all changes to dashboards and datasources must be submitted to that directory.
 - [Portainer](https://www.portainer.io)
   We use Portainer to get an overview of our little cluster. I treat it similarly to [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
 - [Prometheus](https://prometheus.io/)
-  Time series Database, this is the datasource for Grafana. It scrapes point-in-time metrics from telegraf and stores them.
+  Time series Database, this is the datasource for Grafana. It scrapes point-in-time metrics from telegraf and stores them. Prometheus's configuration is located in [here](./raspberry-pi/services/prometheus/).
 - [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/)
-  Telegraf collects and exposes metrics which are then scraped via Prometheus and we can then view in Grafana. Telegraf's configuration is located in [telegraf/](./raspberry-pi/services/telegraf/).
+  Telegraf collects and exposes metrics which are then scraped via Prometheus and we can then view in Grafana. Telegraf's configuration is located in [here](./raspberry-pi/services/telegraf/).
 - [Syncthing](https://syncthing.net)
-  Syncthing is an open source Dropbox/One Drive style file syncronization service. We use this to continously backup our devices to the home server for onsite backup.
+  Syncthing is an open source Dropbox/One Drive style file synchronization service. We use this to continously backup our devices to the home server for onsite backup.
 - [Loki](https://grafana.com/oss/loki/)
-  "Like Prometheus, but for logs." This indexes and stores logs for later viewing and alerting with Grafana.
+  "Like Prometheus, but for logs." This indexes and stores logs for later viewing and alerting with Grafana. Loki's configuration is located in [here](./raspberry-pi/services/loki/).
 - [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/)
-  Watches and parses the logs via systemd-journal and passes them to Loki for storage.
+  Watches and parses the logs via systemd-journal and passes them to Loki for storage. Promtail's configuration is located in [here](./raspberry-pi/services/promtail/).
 
 ## Diagrams
 
