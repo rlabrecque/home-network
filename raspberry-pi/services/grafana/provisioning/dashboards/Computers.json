@@ -16,7 +16,8 @@
   "editable": true,
   "gnetId": 4220,
   "graphTooltip": 0,
-  "iteration": 1606548412343,
+  "id": 5,
+  "iteration": 1607905217272,
   "links": [
     {
       "icon": "external link",
@@ -98,7 +99,8 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "system_uptime{host=\"telegraf\"}",
+          "expr": "system_uptime{host=\"$Server\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -258,7 +260,7 @@
       "pluginVersion": "7.2.1",
       "targets": [
         {
-          "expr": "temp_temp{host=\"$Server\"}\n",
+          "expr": "temp_temp{host=\"$Server\"}",
           "hide": false,
           "instant": true,
           "interval": "",
@@ -513,7 +515,6 @@
       ],
       "thresholds": [
         {
-          "$$hashKey": "object:753",
           "colorMode": "critical",
           "fill": true,
           "line": true,
@@ -522,7 +523,6 @@
           "yaxis": "left"
         },
         {
-          "$$hashKey": "object:759",
           "colorMode": "warning",
           "fill": true,
           "line": true,
@@ -551,7 +551,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:996",
           "format": "percent",
           "label": "Percent(%)",
           "logBase": 1,
@@ -560,7 +559,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:997",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -637,7 +635,6 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:181",
           "alias": "CPU Usage",
           "color": "#6ed0e0",
           "fill": 0,
@@ -664,7 +661,6 @@
       ],
       "thresholds": [
         {
-          "$$hashKey": "object:482",
           "colorMode": "critical",
           "fill": false,
           "line": true,
@@ -673,7 +669,6 @@
           "yaxis": "left"
         },
         {
-          "$$hashKey": "object:795",
           "colorMode": "warning",
           "fill": false,
           "line": true,
@@ -701,7 +696,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:194",
           "format": "degree",
           "label": "CPU Temperature Degrees *C",
           "logBase": 1,
@@ -710,7 +704,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:195",
           "format": "percent",
           "label": "CPU Usage",
           "logBase": 1,
@@ -803,7 +796,6 @@
       ],
       "thresholds": [
         {
-          "$$hashKey": "object:1235",
           "colorMode": "warning",
           "fill": true,
           "line": true,
@@ -832,7 +824,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1205",
           "format": "percentunit",
           "label": "",
           "logBase": 1,
@@ -841,7 +832,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1206",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -963,7 +953,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:449",
           "format": "bytes",
           "label": "Bytes",
           "logBase": 1,
@@ -972,7 +961,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:450",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1038,12 +1026,10 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:3364",
           "alias": "Processes Forked",
           "yaxis": 1
         },
         {
-          "$$hashKey": "object:4369",
           "alias": "Total Threads",
           "yaxis": 2
         }
@@ -1086,7 +1072,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:3371",
           "format": "short",
           "label": "Proccesses Forked",
           "logBase": 1,
@@ -1095,7 +1080,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:3372",
           "format": "short",
           "label": "Total Threads",
           "logBase": 1,
@@ -1199,7 +1183,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1991",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1208,7 +1191,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1992",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1281,18 +1263,21 @@
       "targets": [
         {
           "expr": "processes_blocked{host=\"$Server\"}",
+          "instant": false,
           "interval": "",
           "legendFormat": "Blocked",
           "refId": "A"
         },
         {
           "expr": "processes_running{host=\"$Server\"}",
+          "instant": false,
           "interval": "",
           "legendFormat": "Running",
           "refId": "B"
         },
         {
           "expr": "processes_sleeping{host=\"$Server\"}",
+          "instant": false,
           "interval": "",
           "legendFormat": "Sleeping",
           "refId": "C"
@@ -1319,7 +1304,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1660",
           "format": "short",
           "label": "Process Count",
           "logBase": 1,
@@ -1328,7 +1312,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1661",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1422,7 +1405,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:2186",
           "format": "bytes",
           "label": "",
           "logBase": 1,
@@ -1431,7 +1413,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:2187",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1525,7 +1506,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:2186",
           "format": "bytes",
           "label": "",
           "logBase": 1,
@@ -1534,7 +1514,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:2187",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1558,7 +1537,7 @@
       {
         "allValue": "",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "raspberrypi",
           "value": "raspberrypi"
         },
@@ -1585,6 +1564,7 @@
         "allValue": null,
         "current": {
           "selected": true,
+          "tags": [],
           "text": [
             "All"
           ],
@@ -1645,5 +1625,5 @@
   "timezone": "browser",
   "title": "Computers",
   "uid": "OLbRKlezz",
-  "version": 6
+  "version": 7
 }
