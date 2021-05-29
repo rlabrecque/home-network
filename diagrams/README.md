@@ -10,7 +10,7 @@ Python 3.6+ and [GraphViz](https://graphviz.gitlab.io/download/) are required.
 
 ```bash
 # First create a python virtual environment.
-$ python3 -m venv venv
+$ python3 -m venv .venv
 
 # Install GraphViz if it's not already installed.
 $ sudo apt install graphviz -y
