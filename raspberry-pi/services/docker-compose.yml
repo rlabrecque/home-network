@@ -17,8 +17,8 @@ services:
       ServerIP: "192.168.1.100"
       TZ: "America/Los_Angeles"
     volumes:
-      - "pihole-data:/etc/pihole/"
-      - "pihole-data-dnsmasq:/etc/dnsmasq.d/"
+      - "/mnt/external/pihole/data/:/etc/pihole/"
+      - "/mnt/external/pihole/dnsmasq.d/:/etc/dnsmasq.d/"
     cap_add:
       - "NET_ADMIN"
     networks:
@@ -51,8 +51,8 @@ services:
       DEFAULT_HOST: "pihole.raspberrypi.local"
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock"
-      - "nginx-proxy-data-certs:/etc/nginx/certs"
-      - "nginx-proxy-data-dhparam:/etc/nginx/dhparam"
+      - "/mnt/external/nginx-proxy/certs/:/etc/nginx/certs/"
+      - "/mnt/external/nginx-proxy/dhparam/:/etc/nginx/dhparam/"
     networks:
       primary:
         ipv4_address: "10.0.0.3"
@@ -152,7 +152,7 @@ services:
       primary:
         ipv4_address: "10.0.0.7"
     volumes:
-      - "/mnt/external:/var/syncthing"
+      - "/mnt/external/syncthing/:/var/syncthing/"
     dns:
       - "10.0.0.2"
     logging:
@@ -233,24 +233,6 @@ services:
   #  depends_on:
   #    - "pihole"
   #    - "loki"
-
-volumes:
-  nginx-proxy-data-certs:
-    name: "nginx-proxy-data-certs"
-  nginx-proxy-data-dhparam:
-    name: "nginx-proxy-data-dhparam"
-  pihole-data:
-    name: "pihole-data"
-  pihole-data-dnsmasq:
-    name: "pihole-data-dnsmasq"
-  grafana-data:
-    name: "grafana-data"
-  portainer-data:
-    name: "portainer-data"
-  prometheus-data:
-    name: "prometheus-data"
-  loki-data:
-    name: "loki-data"
 
 networks:
   primary:
