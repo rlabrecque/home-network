@@ -14,12 +14,10 @@ rl-update-upgrade () {
 	echo -e "\e[1mUpdating and Upgrading...\e[0m"
 
 	apt-get update
-	echo ""
-
 	apt-get upgrade -y
-	echo ""
-
 	apt-get dist-upgrade -y
+
+	echo -e "\e[32mSuccess!\e[0m"
 	echo ""
 }
 
@@ -27,9 +25,9 @@ rl-cleanup () {
 	echo -e "\e[1mCleaning up...\e[0m"
 
 	apt-get autoclean -y
-	echo ""
-
 	apt-get autoremove -y
+
+	echo -e "\e[32mSuccess!\e[0m"
 	echo ""
 }
 
@@ -65,24 +63,24 @@ rl-install-build-essentials () {
 	echo ""
 }
 
-rl-install-docker () {
-	echo -e "\e[1mInstalling docker\e[0m"
-
-	# Note: Installing docker will disconnect ssh
-	curl -sSL https://get.docker.com | sh
-	usermod -aG docker pi
-	python3 -m pip install -IU docker-compose
-
-	echo -e "\e[32mSuccess!\e[0m"
-	echo ""
-}
-
 rl-install-python () {
 	echo -e "\e[1mInstalling Python\e[0m"
 
 	apt-get install -y python3
 	apt-get install -y python3-pip
-	pip3 install virtualenv
+	apt-get install -y python3-venv
+	pip3 install --upgrade pip
+
+	echo -e "\e[32mSuccess!\e[0m"
+	echo ""
+}
+
+rl-install-docker () {
+	echo -e "\e[1mInstalling docker\e[0m"
+
+	curl -sSL https://get.docker.com | sh
+	usermod -aG docker pi
+	pip3 install -IU docker-compose
 
 	echo -e "\e[32mSuccess!\e[0m"
 	echo ""
@@ -96,13 +94,11 @@ rl-set-timezone
 
 rl-set-locale
 
-
 rl-install-build-essentials
 
 rl-install-python
 
 rl-install-docker # Requires build-essentials, python
-
 
 rl-cleanup
 
