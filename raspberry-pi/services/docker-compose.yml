@@ -32,13 +32,13 @@ services:
     extra_hosts:
       - "raspberrypi.local:192.168.1.100"
       - "pihole.raspberrypi.local:192.168.1.100"
-      - "grafana.raspberrypi.local:192.168.1.100"
-      - "portainer.raspberrypi.local:192.168.1.100"
-      - "telegraf.raspberrypi.local:192.168.1.100"
+      #- "grafana.raspberrypi.local:192.168.1.100"
+      #- "portainer.raspberrypi.local:192.168.1.100"
+      #- "telegraf.raspberrypi.local:192.168.1.100"
       - "syncthing.raspberrypi.local:192.168.1.100"
-      - "prometheus.raspberrypi.local:192.168.1.100"
-      - "loki.raspberrypi.local:192.168.1.100"
-      - "promtail.raspberrypi.local:192.168.1.100"
+      #- "prometheus.raspberrypi.local:192.168.1.100"
+      #- "loki.raspberrypi.local:192.168.1.100"
+      #- "promtail.raspberrypi.local:192.168.1.100"
 
   nginx-proxy:
     container_name: "nginx-proxy"
@@ -63,80 +63,80 @@ services:
     depends_on:
       - "pihole"
 
-  grafana:
-    container_name: "grafana"
-    hostname: "grafana"
-    image: "grafana/grafana:7.2.1"
-    restart: "unless-stopped"
-    ports:
-      - "3000:3000/tcp"
-    environment:
-      VIRTUAL_HOST: "grafana.raspberrypi.local"
-      VIRTUAL_PORT: "3000"
-      GF_INSTALL_PLUGINS: "grafana-piechart-panel"
-      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/etc/grafana/provisioning/dashboards/Home.json"
-    volumes:
-      - "grafana-data:/var/lib/grafana"
-      - "./grafana/provisioning:/etc/grafana/provisioning"
-    networks:
-      primary:
-        ipv4_address: "10.0.0.4"
-    dns:
-      - "10.0.0.2"
-    logging:
-      driver: "journald"
-    depends_on:
-      - "pihole"
-      - "prometheus"
-      - "loki"
+  #grafana:
+  #  container_name: "grafana"
+  #  hostname: "grafana"
+  #  image: "grafana/grafana:7.2.1"
+  #  restart: "unless-stopped"
+  #  ports:
+  #    - "3000:3000/tcp"
+  #  environment:
+  #    VIRTUAL_HOST: "grafana.raspberrypi.local"
+  #    VIRTUAL_PORT: "3000"
+  #    GF_INSTALL_PLUGINS: "grafana-piechart-panel"
+  #    GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/etc/grafana/provisioning/dashboards/Home.json"
+  #  volumes:
+  #    - "grafana-data:/var/lib/grafana"
+  #    - "./grafana/provisioning:/etc/grafana/provisioning"
+  #  networks:
+  #    primary:
+  #      ipv4_address: "10.0.0.4"
+  #  dns:
+  #    - "10.0.0.2"
+  #  logging:
+  #    driver: "journald"
+  #  depends_on:
+  #    - "pihole"
+  #    - "prometheus"
+  #    - "loki"
 
-  portainer:
-    container_name: "portainer"
-    hostname: "portainer"
-    image: "portainer/portainer-ce:2.0.0-alpine"
-    restart: "unless-stopped"
-    ports:
-      - "8000:8000"
-      - "9000:9000"
-    environment:
-      VIRTUAL_HOST: "portainer.raspberrypi.local"
-      VIRTUAL_PORT: "9000"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "portainer-data:/data"
-    networks:
-      primary:
-        ipv4_address: "10.0.0.5"
-    dns:
-      - "10.0.0.2"
-    logging:
-      driver: "journald"
-    depends_on:
-      - "pihole"
+  #portainer:
+  #  container_name: "portainer"
+  #  hostname: "portainer"
+  #  image: "portainer/portainer-ce:2.0.0-alpine"
+  #  restart: "unless-stopped"
+  #  ports:
+  #    - "8000:8000"
+  #    - "9000:9000"
+  #  environment:
+  #    VIRTUAL_HOST: "portainer.raspberrypi.local"
+  #    VIRTUAL_PORT: "9000"
+  #  volumes:
+  #    - "/var/run/docker.sock:/var/run/docker.sock"
+  #    - "portainer-data:/data"
+  #  networks:
+  #    primary:
+  #      ipv4_address: "10.0.0.5"
+  #  dns:
+  #    - "10.0.0.2"
+  #  logging:
+  #    driver: "journald"
+  #  depends_on:
+  #    - "pihole"
 
-  telegraf:
-    container_name: "telegraf"
-    hostname: "telegraf"
-    image: "telegraf:1.15"
-    command: "--config-directory /etc/telegraf/telegraf.d"
-    restart: "always"
-    ports:
-      - "9273:9273"
-    environment:
-      VIRTUAL_HOST: "telegraf.raspberrypi.local"
-      VIRTUAL_PORT: "9273"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "./telegraf:/etc/telegraf:ro"
-    networks:
-      primary:
-        ipv4_address: "10.0.0.6"
-    dns:
-      - "10.0.0.2"
-    logging:
-      driver: "journald"
-    depends_on:
-      - "pihole"
+  #telegraf:
+  #  container_name: "telegraf"
+  #  hostname: "telegraf"
+  #  image: "telegraf:1.15"
+  #  command: "--config-directory /etc/telegraf/telegraf.d"
+  #  restart: "always"
+  #  ports:
+  #    - "9273:9273"
+  #  environment:
+  #    VIRTUAL_HOST: "telegraf.raspberrypi.local"
+  #    VIRTUAL_PORT: "9273"
+  #  volumes:
+  #    - "/var/run/docker.sock:/var/run/docker.sock"
+  #    - "./telegraf:/etc/telegraf:ro"
+  #  networks:
+  #    primary:
+  #      ipv4_address: "10.0.0.6"
+  #  dns:
+  #    - "10.0.0.2"
+  #  logging:
+  #    driver: "journald"
+  #  depends_on:
+  #    - "pihole"
 
   syncthing:
     container_name: "syncthing"
@@ -160,79 +160,79 @@ services:
     depends_on:
       - "pihole"
 
-  prometheus:
-    container_name: "prometheus"
-    hostname: "prometheus"
-    restart: "unless-stopped"
-    image: "prom/prometheus:latest"
-    ports:
-      - "9090:9090"
-    environment:
-      VIRTUAL_HOST: "prometheus.raspberrypi.local"
-      VIRTUAL_PORT: "9090"
-    networks:
-      primary:
-        ipv4_address: "10.0.0.8"
-    volumes:
-      - "prometheus-data:/prometheus"
-      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
-    dns:
-      - "10.0.0.2"
-    logging:
-      driver: "journald"
-    depends_on:
-      - "pihole"
+  #prometheus:
+  #  container_name: "prometheus"
+  #  hostname: "prometheus"
+  #  restart: "unless-stopped"
+  #  image: "prom/prometheus:latest"
+  #  ports:
+  #    - "9090:9090"
+  #  environment:
+  #    VIRTUAL_HOST: "prometheus.raspberrypi.local"
+  #    VIRTUAL_PORT: "9090"
+  #  networks:
+  #    primary:
+  #      ipv4_address: "10.0.0.8"
+  #  volumes:
+  #    - "prometheus-data:/prometheus"
+  #    - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
+  #  dns:
+  #    - "10.0.0.2"
+  #  logging:
+  #    driver: "journald"
+  #  depends_on:
+  #    - "pihole"
 
-  loki:
-    container_name: "loki"
-    hostname: "loki"
-    restart: "unless-stopped"
-    image: "grafana/loki:2.0.0"
-    command: "-config.file=/etc/loki/loki.yml"
-    ports:
-      - "3100:3100"
-    environment:
-      VIRTUAL_HOST: "loki.raspberrypi.local"
-      VIRTUAL_PORT: "3100"
-    networks:
-      primary:
-        ipv4_address: "10.0.0.9"
-    volumes:
-      - "loki-data:/loki"
-      - "./loki/loki.yml:/etc/loki/loki.yml:ro"
-    dns:
-      - "10.0.0.2"
-    logging:
-      driver: "journald"
-    depends_on:
-      - "pihole"
+  #loki:
+  #  container_name: "loki"
+  #  hostname: "loki"
+  #  restart: "unless-stopped"
+  #  image: "grafana/loki:2.0.0"
+  #  command: "-config.file=/etc/loki/loki.yml"
+  #  ports:
+  #    - "3100:3100"
+  #  environment:
+  #    VIRTUAL_HOST: "loki.raspberrypi.local"
+  #    VIRTUAL_PORT: "3100"
+  #  networks:
+  #    primary:
+  #      ipv4_address: "10.0.0.9"
+  #  volumes:
+  #    - "loki-data:/loki"
+  #    - "./loki/loki.yml:/etc/loki/loki.yml:ro"
+  #  dns:
+  #    - "10.0.0.2"
+  #  logging:
+  #    driver: "journald"
+  #  depends_on:
+  #    - "pihole"
 
-  promtail:
-    container_name: "promtail"
-    hostname: "promtail"
-    restart: "unless-stopped"
-    image: "grafana/promtail:2.0.0"
-    command: "-config.file=/etc/promtail/promtail.yml"
-    ports:
-      - "9080:9080"
-    environment:
-      VIRTUAL_HOST: "promtail.raspberrypi.local"
-      VIRTUAL_PORT: "9080"
-    networks:
-      primary:
-        ipv4_address: "10.0.0.10"
-    volumes:
-      - "/var/log/journal/:/var/log/journal/:ro"
-      - "/run/log/journal/:/run/log/journal/:ro"
-      - "/etc/machine-id:/etc/machine-id:ro"
-      - "./promtail/promtail.yml:/etc/promtail/promtail.yml:ro"
-    dns:
-      - "10.0.0.2"
-    logging:
-      driver: "journald"
-    depends_on:
-      - "pihole"
-      - "loki"
+  #promtail:
+  #  container_name: "promtail"
+  #  hostname: "promtail"
+  #  restart: "unless-stopped"
+  #  image: "grafana/promtail:2.0.0"
+  #  command: "-config.file=/etc/promtail/promtail.yml"
+  #  ports:
+  #    - "9080:9080"
+  #  environment:
+  #    VIRTUAL_HOST: "promtail.raspberrypi.local"
+  #    VIRTUAL_PORT: "9080"
+  #  networks:
+  #    primary:
+  #      ipv4_address: "10.0.0.10"
+  #  volumes:
+  #    - "/var/log/journal/:/var/log/journal/:ro"
+  #    - "/run/log/journal/:/run/log/journal/:ro"
+  #    - "/etc/machine-id:/etc/machine-id:ro"
+  #    - "./promtail/promtail.yml:/etc/promtail/promtail.yml:ro"
+  #  dns:
+  #    - "10.0.0.2"
+  #  logging:
+  #    driver: "journald"
+  #  depends_on:
+  #    - "pihole"
+  #    - "loki"
 
 volumes:
   nginx-proxy-data-certs:
