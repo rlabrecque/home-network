@@ -3,7 +3,7 @@ services:
   pihole:
     container_name: "pihole"
     hostname: "pihole"
-    image: "pihole/pihole:v5.1.2"
+    image: "pihole/pihole:v5.8.1"
     restart: "unless-stopped"
     ports:
       - "53:53/tcp"
