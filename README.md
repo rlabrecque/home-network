@@ -57,7 +57,7 @@ We use the [Diagrams](https://diagrams.mingrammer.com) as Code library for Pytho
 
 ## Raspberry Pi Deployment
 
-The services folder lives in `~/services` on the Raspberry Pi. We connect to it via SSH with `ssh pi@raspberrypi`.
+The services folder lives in `/mnt/external/services` on the Raspberry Pi. We connect to it via SSH with `ssh pi@raspberrypi`.
 
 To push updates to the server we currently run [sync.sh](./raspberry-pi/sync.sh) from the remote machine.
 
@@ -65,7 +65,7 @@ Then while connected to the raspberry pi, we run the following:
 
 ```bash
 # Navigate to the services folder
-$ cd ~/services
+$ cd /mnt/external/services
 
 # Updates and runs all services
 $ run.sh
