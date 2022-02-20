@@ -13,4 +13,7 @@ rsync -r ./install.sh pi@raspberrypi.local:~/install.sh
 echo Syncing services/
 rsync -r ./services/ pi@raspberrypi.local:~/services
 
+echo Syncing .ssh/
+rsync -r ./.ssh/ pi@raspberrypi.local:~/.ssh
+
 echo Complete
