@@ -32,21 +32,12 @@ services:
     networks:
       primary:
         ipv4_address: "10.0.0.2"
-    dns:
-      - "127.0.0.1"
-      - "8.8.8.8"
     logging:
       driver: "journald"
     extra_hosts:
       - "raspberrypi.local:192.168.1.100"
       - "pihole.raspberrypi.local:192.168.1.100"
-      #- "grafana.raspberrypi.local:192.168.1.100"
-      #- "portainer.raspberrypi.local:192.168.1.100"
-      #- "telegraf.raspberrypi.local:192.168.1.100"
       - "syncthing.raspberrypi.local:192.168.1.100"
-      #- "prometheus.raspberrypi.local:192.168.1.100"
-      #- "loki.raspberrypi.local:192.168.1.100"
-      #- "promtail.raspberrypi.local:192.168.1.100"
 
   nginx-proxy:
     container_name: "nginx-proxy"
