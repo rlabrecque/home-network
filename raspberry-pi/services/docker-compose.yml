@@ -71,6 +71,29 @@ services:
     depends_on:
       - "pihole"
 
+  syncthing:
+    container_name: "syncthing"
+    hostname: "syncthing"
+    restart: "unless-stopped"
+    image: "syncthing/syncthing:1.19"
+    ports:
+      - "22000:22000"
+      - "8384:8384"
+    environment:
+      VIRTUAL_HOST: "syncthing.raspberrypi.local"
+      VIRTUAL_PORT: "8384"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.4"
+    volumes:
+      - "/mnt/external/data/syncthing/:/var/syncthing/"
+    dns:
+      - "10.0.0.2"
+    logging:
+      driver: "journald"
+    depends_on:
+      - "pihole"
+
   #grafana:
   #  container_name: "grafana"
   #  hostname: "grafana"
@@ -145,28 +168,6 @@ services:
   #    driver: "journald"
   #  depends_on:
   #    - "pihole"
-
-  syncthing:
-    container_name: "syncthing"
-    hostname: "syncthing"
-    restart: "unless-stopped"
-    image: "syncthing/syncthing:1.17"
-    ports:
-      - "22000:22000"
-    environment:
-      VIRTUAL_HOST: "syncthing.raspberrypi.local"
-      VIRTUAL_PORT: "8384"
-    networks:
-      primary:
-        ipv4_address: "10.0.0.7"
-    volumes:
-      - "/mnt/external/syncthing/:/var/syncthing/"
-    dns:
-      - "10.0.0.2"
-    logging:
-      driver: "journald"
-    depends_on:
-      - "pihole"
 
   #prometheus:
   #  container_name: "prometheus"
