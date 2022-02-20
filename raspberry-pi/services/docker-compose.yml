@@ -51,12 +51,10 @@ services:
   nginx-proxy:
     container_name: "nginx-proxy"
     hostname: "nginx-proxy"
-    image: "alexanderkrause/rpi-nginx-proxy:alpine"
+    image: "nginxproxy/nginx-proxy:0.10.0-alpine"
     restart: "always"
     ports:
       - "80:80/tcp"
-    environment:
-      DEFAULT_HOST: "pihole.raspberrypi.local"
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
       - "/mnt/external/data/nginx-proxy/certs/:/etc/nginx/certs/"
