@@ -25,8 +25,8 @@ services:
       ServerIP: "192.168.1.100"
       TZ: "America/Los_Angeles"
     volumes:
-      - "/mnt/external/pihole/data/:/etc/pihole/"
-      - "/mnt/external/pihole/dnsmasq.d/:/etc/dnsmasq.d/"
+      - "/mnt/external/data/pihole/data/:/etc/pihole/"
+      - "/mnt/external/data/pihole/dnsmasq.d/:/etc/dnsmasq.d/"
     cap_add:
       - "NET_ADMIN"
     networks:
@@ -58,9 +58,9 @@ services:
     environment:
       DEFAULT_HOST: "pihole.raspberrypi.local"
     volumes:
-      - "/var/run/docker.sock:/tmp/docker.sock"
-      - "/mnt/external/nginx-proxy/certs/:/etc/nginx/certs/"
-      - "/mnt/external/nginx-proxy/dhparam/:/etc/nginx/dhparam/"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "/mnt/external/data/nginx-proxy/certs/:/etc/nginx/certs/"
+      - "/mnt/external/data/nginx-proxy/dhparam/:/etc/nginx/dhparam/"
     networks:
       primary:
         ipv4_address: "10.0.0.3"
