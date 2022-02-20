@@ -1,4 +1,12 @@
 version: "3"
+
+networks:
+  primary:
+    driver: "bridge"
+    ipam:
+      config:
+        - subnet: "10.0.0.0/28"
+
 services:
   pihole:
     container_name: "pihole"
@@ -233,10 +241,3 @@ services:
   #  depends_on:
   #    - "pihole"
   #    - "loki"
-
-networks:
-  primary:
-    driver: "bridge"
-    ipam:
-      config:
-        - subnet: "10.0.0.0/28"
