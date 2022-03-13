@@ -2,7 +2,7 @@
 
 This generates the infrastructure diagram using the python library [diagrams](https://github.com/mingrammer/diagrams).
 
-![Home Network Diagram](./home_network.png)
+![Home Network Diagram](./output/home_network.png)
 
 ## Getting Started
 
