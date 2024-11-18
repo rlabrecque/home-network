@@ -1,0 +1,17 @@
+permit_join: false
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mqtt
+serial:
+  port: /dev/ttyUSB0
+frontend:
+  port: 8080
+  url: http://zigbee2mqtt.raspberrypi.local
+ota:
+  disable_automatic_update_check: true
+  ikea_ota_use_test_url: false
+advanced:
+  network_key: GENERATE
+  homeassistant_legacy_entity_attributes: false
+  legacy_api: false
+  legacy_availability_payload: false

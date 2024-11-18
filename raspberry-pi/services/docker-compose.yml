@@ -36,6 +36,7 @@ services:
       - "raspberrypi.local:192.168.1.100"
       - "pihole.raspberrypi.local:192.168.1.100"
       - "syncthing.raspberrypi.local:192.168.1.100"
+      - "zigbee2mqtt.raspberrypi.local:192.168.1.100"
 
   nginx-proxy:
     container_name: "nginx-proxy"
@@ -229,3 +230,56 @@ services:
   #  depends_on:
   #    - "pihole"
   #    - "loki"
+
+  mqtt:
+    container_name: "mqtt"
+    hostname: "mqtt"
+    restart: "unless-stopped"
+    image: "eclipse-mosquitto:2.0"
+    command: "mosquitto -c /mosquitto-no-auth.conf"
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    #environment:
+    #  VIRTUAL_HOST: "mqtt.raspberrypi.local"
+    #  VIRTUAL_PORT: "9080"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.11"
+    volumes:
+      - "/mnt/external/data/mqtt:/mosquitto"
+    dns:
+      - "10.0.0.2"
+    logging:
+      driver: "journald"
+    depends_on:
+      - "pihole"
+
+
+  zigbee2mqtt:
+    container_name: "zigbee2mqtt"
+    hostname: "zigbee2mqtt"
+    restart: "unless-stopped"
+    image: "koenkk/zigbee2mqtt:1.41.0"
+    ports:
+      - "8080:8080"
+    environment:
+      VIRTUAL_HOST: "zigbee2mqtt.raspberrypi.local"
+      VIRTUAL_PORT: "8080"
+      TZ: "America/Los_Angeles"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.12"
+    volumes:
+      - "./config/zigbee2mqtt/configuration.yaml:/app/configuration.example.yaml:ro"
+      - "/mnt/external/data/zigbee2mqtt:/app/data"
+      - "/run/udev:/run/udev:ro"
+    dns:
+      - "10.0.0.2"
+    logging:
+      driver: "journald"
+    depends_on:
+      - "pihole"
+      - "mqtt"
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
