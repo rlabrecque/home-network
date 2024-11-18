@@ -6,7 +6,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Pull down the any updated images
-docker-compose pull
+docker compose pull
 
 # Update and restart the services
-docker-compose up -d --build --remove-orphans
+docker compose up -d --build --remove-orphans

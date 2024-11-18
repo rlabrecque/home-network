@@ -80,7 +80,6 @@ rl-install-docker () {
 
 	curl -sSL https://get.docker.com | sh
 	usermod -aG docker pi
-	pip3 install -IU docker-compose
 
 	echo -e "\e[32mSuccess!\e[0m"
 	echo ""
