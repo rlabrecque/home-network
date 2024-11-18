@@ -9,7 +9,7 @@ services:
   pihole:
     container_name: "pihole"
     hostname: "pihole"
-    image: "pihole/pihole:v5.8.1"
+    image: "pihole/pihole:2024.07.0"
     restart: "unless-stopped"
     ports:
       - "53:53/tcp"
@@ -40,7 +40,7 @@ services:
   nginx-proxy:
     container_name: "nginx-proxy"
     hostname: "nginx-proxy"
-    image: "nginxproxy/nginx-proxy:0.10.0-alpine"
+    image: "nginxproxy/nginx-proxy:1.6-alpine"
     restart: "always"
     ports:
       - "80:80/tcp"
@@ -62,7 +62,7 @@ services:
     container_name: "syncthing"
     hostname: "syncthing"
     restart: "unless-stopped"
-    image: "syncthing/syncthing:1.19"
+    image: "syncthing/syncthing:1.28"
     ports:
       - "22000:22000"
       - "8384:8384"
