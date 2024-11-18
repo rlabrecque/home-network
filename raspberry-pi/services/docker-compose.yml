@@ -97,7 +97,7 @@ services:
   #    GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/etc/grafana/provisioning/dashboards/Home.json"
   #  volumes:
   #    - "grafana-data:/var/lib/grafana"
-  #    - "./grafana/provisioning:/etc/grafana/provisioning"
+  #    - "./config/grafana/provisioning:/etc/grafana/provisioning" # :ro ?
   #  networks:
   #    primary:
   #      ipv4_address: "10.0.0.4"
@@ -147,7 +147,7 @@ services:
   #    VIRTUAL_PORT: "9273"
   #  volumes:
   #    - "/var/run/docker.sock:/var/run/docker.sock"
-  #    - "./telegraf:/etc/telegraf:ro"
+  #    - "./config/telegraf:/etc/telegraf:ro"
   #  networks:
   #    primary:
   #      ipv4_address: "10.0.0.6"
@@ -173,7 +173,7 @@ services:
   #      ipv4_address: "10.0.0.8"
   #  volumes:
   #    - "prometheus-data:/prometheus"
-  #    - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
+  #    - "./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
   #  dns:
   #    - "10.0.0.2"
   #  logging:
@@ -197,7 +197,7 @@ services:
   #      ipv4_address: "10.0.0.9"
   #  volumes:
   #    - "loki-data:/loki"
-  #    - "./loki/loki.yml:/etc/loki/loki.yml:ro"
+  #    - "./config/loki/loki.yml:/etc/loki/loki.yml:ro"
   #  dns:
   #    - "10.0.0.2"
   #  logging:
@@ -223,7 +223,7 @@ services:
   #    - "/var/log/journal/:/var/log/journal/:ro"
   #    - "/run/log/journal/:/run/log/journal/:ro"
   #    - "/etc/machine-id:/etc/machine-id:ro"
-  #    - "./promtail/promtail.yml:/etc/promtail/promtail.yml:ro"
+  #    - "./config/promtail/promtail.yml:/etc/promtail/promtail.yml:ro"
   #  dns:
   #    - "10.0.0.2"
   #  logging:
