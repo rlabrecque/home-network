@@ -37,6 +37,7 @@ services:
       - "pihole.raspberrypi.local:192.168.1.100"
       - "syncthing.raspberrypi.local:192.168.1.100"
       - "zigbee2mqtt.raspberrypi.local:192.168.1.100"
+      - "homeassistant.raspberrypi.local:192.168.1.100"
 
   nginx-proxy:
     container_name: "nginx-proxy"
@@ -271,6 +272,7 @@ services:
       primary:
         ipv4_address: "10.0.0.12"
     volumes:
+      # zigbee2mqtt will use configuration.example.yaml as a template to generate configuration.yaml, this allows us to keep the initial configuration versioned
       - "./config/zigbee2mqtt/configuration.yaml:/app/configuration.example.yaml:ro"
       - "/mnt/external/data/zigbee2mqtt:/app/data"
       - "/run/udev:/run/udev:ro"
@@ -283,3 +285,30 @@ services:
       - "mqtt"
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
+
+  homeassistant:
+    container_name: "homeassistant"
+    hostname: "homeassistant"
+    restart: "unless-stopped"
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    ports:
+      - "8123:8123"
+    environment:
+      VIRTUAL_HOST: "homeassistant.raspberrypi.local"
+      VIRTUAL_PORT: "8123"
+    networks:
+      primary:
+        ipv4_address: "10.0.0.13"
+    volumes:
+      - "/mnt/external/data/homeassistant:/config"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/run/dbus:/run/dbus:ro"
+    dns:
+      - "10.0.0.2"
+    logging:
+      driver: "journald"
+    depends_on:
+      - "mqtt"
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    privileged: true
