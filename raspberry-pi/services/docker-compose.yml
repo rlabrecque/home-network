@@ -9,14 +9,20 @@ services:
   pihole:
     container_name: "pihole"
     hostname: "pihole"
-    image: "pihole/pihole:2024.07.0"
+    image: "pihole/pihole:2025.03.0"
     restart: "unless-stopped"
     ports:
+      # DNS Ports
       - "53:53/tcp"
       - "53:53/udp"
-      - "67:67/udp"
-      - "8053:80/tcp"
-      - "443:443/tcp"
+      # Default HTTP Port
+      #- "80:80/tcp"
+      # Default HTTPs Port. FTL will generate a self-signed certificate
+      #- "443:443/tcp"
+      # Uncomment the below if using Pi-hole as your DHCP Server
+      #- "67:67/udp"
+      # Uncomment the line below if you are using Pi-hole as your NTP server
+      #- "123:123/udp"
     environment:
       VIRTUAL_HOST: "pihole.raspberrypi.local"
       VIRTUAL_PORT: "80"
@@ -26,7 +32,13 @@ services:
       - "/mnt/external/data/pihole/data/:/etc/pihole/"
       - "/mnt/external/data/pihole/dnsmasq.d/:/etc/dnsmasq.d/"
     cap_add:
-      - "NET_ADMIN"
+      # See https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+      # Required if you are using Pi-hole as your DHCP server, else not needed
+      #- "NET_ADMIN"
+      # Required if you are using Pi-hole as your NTP client to be able to set the host's system time
+      #- "SYS_TIME"
+      # Optional, if Pi-hole should get some more processing time
+      - "SYS_NICE"
     networks:
       primary:
         ipv4_address: "10.0.0.2"
