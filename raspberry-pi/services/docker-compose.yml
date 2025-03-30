@@ -64,7 +64,7 @@ services:
     container_name: "syncthing"
     hostname: "syncthing"
     restart: "unless-stopped"
-    image: "syncthing/syncthing:1.28"
+    image: "syncthing/syncthing:1.29"
     ports:
       - "22000:22000"
       - "8384:8384"
