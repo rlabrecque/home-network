@@ -261,7 +261,7 @@ services:
     container_name: "zigbee2mqtt"
     hostname: "zigbee2mqtt"
     restart: "unless-stopped"
-    image: "koenkk/zigbee2mqtt:1.41.0"
+    image: "koenkk/zigbee2mqtt:1.42.0"
     ports:
       - "8080:8080"
     environment:
@@ -284,7 +284,7 @@ services:
       - "pihole"
       - "mqtt"
     devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
 
   homeassistant:
     container_name: "homeassistant"
@@ -310,5 +310,5 @@ services:
     depends_on:
       - "mqtt"
     devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
     privileged: true
