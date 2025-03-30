@@ -69,7 +69,6 @@ rl-install-python () {
 	apt-get install -y python3
 	apt-get install -y python3-pip
 	apt-get install -y python3-venv
-	pip3 install --upgrade pip
 
 	echo -e "\e[32mSuccess!\e[0m"
 	echo ""
