@@ -42,7 +42,7 @@ services:
   nginx-proxy:
     container_name: "nginx-proxy"
     hostname: "nginx-proxy"
-    image: "nginxproxy/nginx-proxy:1.6-alpine"
+    image: "nginxproxy/nginx-proxy:1.7-alpine"
     restart: "always"
     ports:
       - "80:80/tcp"
