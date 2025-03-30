@@ -1,0 +1,606 @@
+Raspberry Pi reference 2024-11-19
+Generated using pi-gen, https://github.com/RPi-Distro/pi-gen, 891df1e21ed2b6099a2e6a13e26c91dea44b34d4, stage2
+
+Packages:
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                                 Version                          Architecture Description
++++-====================================-================================-============-================================================================================
+ii  adduser                              3.134                            all          add and remove users and groups
+ii  alsa-topology-conf                   1.2.5.1-2                        all          ALSA topology configuration files
+ii  alsa-ucm-conf                        1.2.8-1                          all          ALSA Use Case Manager configuration files
+ii  alsa-utils                           1.2.8-1+rpt1                     arm64        Utilities for configuring and using ALSA
+ii  apparmor                             3.0.8-3                          arm64        user-space parser utility for AppArmor
+ii  apt                                  2.6.1                            arm64        commandline package manager
+ii  apt-listchanges                      3.24                             all          package change history notification tool
+ii  apt-utils                            2.6.1                            arm64        package management related utility programs
+ii  avahi-daemon                         0.8-10                           arm64        Avahi mDNS/DNS-SD daemon
+ii  base-files                           12.4+deb12u8                     arm64        Debian base system miscellaneous files
+ii  base-passwd                          3.6.1                            arm64        Debian base system master password and group files
+ii  bash                                 5.2.15-2+b7                      arm64        GNU Bourne Again SHell
+ii  bash-completion                      1:2.11-6                         all          programmable completion for the bash shell
+ii  binutils                             2.40-2                           arm64        GNU assembler, linker and binary utilities
+ii  binutils-aarch64-linux-gnu           2.40-2                           arm64        GNU binary utilities, for aarch64-linux-gnu target
+ii  binutils-common:arm64                2.40-2                           arm64        Common files for the GNU assembler, linker and binary utilities
+ii  bluez                                5.66-1+rpt1+deb12u2              arm64        Bluetooth tools and daemons
+ii  bluez-firmware                       1.2-9+rpt3                       all          Firmware for Bluetooth devices
+ii  bsdextrautils                        2.38.1-5+deb12u2                 arm64        extra utilities from 4.4BSD-Lite
+ii  bsdutils                             1:2.38.1-5+deb12u2               arm64        basic utilities from 4.4BSD-Lite
+ii  build-essential                      12.9                             arm64        Informational list of build-essential packages
+ii  busybox                              1:1.35.0-4+b3                    arm64        Tiny utilities for small and embedded systems
+ii  bzip2                                1.0.8-5+b1                       arm64        high-quality block-sorting file compressor - utilities
+ii  ca-certificates                      20230311                         all          Common CA certificates
+ii  cifs-utils                           2:7.0-2                          arm64        Common Internet File System utilities
+ii  console-setup                        1.221rpt1                        all          console font and keymap setup program
+ii  console-setup-linux                  1.221rpt1                        all          Linux specific part of console-setup
+ii  coreutils                            9.1-1                            arm64        GNU core utilities
+ii  cpio                                 2.13+dfsg-7.1                    arm64        GNU cpio -- a program to manage archives of files
+ii  cpp                                  4:12.2.0-3                       arm64        GNU C preprocessor (cpp)
+ii  cpp-12                               12.2.0-14                        arm64        GNU C preprocessor
+ii  cron                                 3.0pl1-162                       arm64        process scheduling daemon
+ii  cron-daemon-common                   3.0pl1-162                       all          process scheduling daemon's configuration files
+ii  curl                                 7.88.1-10+deb12u8                arm64        command line tool for transferring data with URL syntax
+ii  dash                                 0.5.12-2                         arm64        POSIX-compliant shell
+ii  dbus                                 1.14.10-1~deb12u1                arm64        simple interprocess messaging system (system message bus)
+ii  dbus-bin                             1.14.10-1~deb12u1                arm64        simple interprocess messaging system (command line utilities)
+ii  dbus-daemon                          1.14.10-1~deb12u1                arm64        simple interprocess messaging system (reference message bus)
+ii  dbus-session-bus-common              1.14.10-1~deb12u1                all          simple interprocess messaging system (session bus configuration)
+ii  dbus-system-bus-common               1.14.10-1~deb12u1                all          simple interprocess messaging system (system bus configuration)
+ii  dbus-user-session                    1.14.10-1~deb12u1                arm64        simple interprocess messaging system (systemd --user integration)
+ii  dc                                   1.07.1-3                         arm64        GNU dc arbitrary precision reverse-polish calculator
+ii  dconf-cli                            0.40.0-4                         arm64        simple configuration storage system - utilities
+ii  debconf                              1.5.82                           all          Debian configuration management system
+ii  debconf-i18n                         1.5.82                           all          full internationalization support for debconf
+ii  debconf-utils                        1.5.82                           all          debconf utilities
+ii  debian-archive-keyring               2023.3+deb12u1                   all          GnuPG archive keys of the Debian archive
+ii  debianutils                          5.7-0.5~deb12u1                  arm64        Miscellaneous utilities specific to Debian
+ii  device-tree-compiler                 1.6.1-4+b1                       arm64        Device Tree Compiler for Flat Device Trees
+ii  diffutils                            1:3.8-4                          arm64        File comparison utilities
+ii  dirmngr                              2.2.40-1.1                       arm64        GNU privacy guard - network certificate management service
+ii  distro-info-data                     0.58+deb12u3                     all          information about the distributions' releases (data files)
+ii  dmidecode                            3.4-1                            arm64        SMBIOS/DMI table decoder
+ii  dmsetup                              2:1.02.185-2                     arm64        Linux Kernel Device Mapper userspace library
+ii  dns-root-data                        2024041801~deb12u1               all          DNS root hints and DNSSEC trust anchor
+ii  dnsmasq-base                         2.89-1                           arm64        Small caching DNS proxy and DHCP/TFTP server
+ii  dos2unix                             7.4.3-1                          arm64        convert text file line endings between CRLF and LF
+ii  dosfstools                           4.2-1                            arm64        utilities for making and checking MS-DOS FAT filesystems
+ii  dphys-swapfile                       20100506-7.1+rpt3                all          Autogenerate and use a swap file
+ii  dpkg                                 1.22.6~bpo12+rpt3                arm64        Debian package management system
+ii  dpkg-dev                             1.22.6~bpo12+rpt3                all          Debian package development tools
+ii  e2fsprogs                            1.47.0-2                         arm64        ext2/ext3/ext4 file system utilities
+ii  ed                                   1.19-1                           arm64        classic UNIX line editor
+ii  eject                                2.38.1-5+deb12u2                 arm64        ejects CDs and operates CD-Changers under Linux
+ii  ethtool                              1:6.1-1                          arm64        display or change Ethernet device settings
+ii  exfatprogs                           1.2.0-1+deb12u1                  arm64        exFAT file system utilities
+ii  fake-hwclock                         0.12+nmu1                        all          Save/restore system clock on machines without working RTC hardware
+ii  fakeroot                             1.31-1.2                         arm64        tool for simulating superuser privileges
+ii  fbset                                2.1-33                           arm64        framebuffer device maintenance program
+ii  fdisk                                2.38.1-5+deb12u2                 arm64        collection of partitioning utilities
+ii  file                                 1:5.44-3                         arm64        Recognize the type of data in a file using "magic" numbers
+ii  findutils                            4.9.0-4                          arm64        utilities for finding files--find, xargs
+ii  firmware-atheros                     1:20230625-2+rpt3                all          Binary firmware for Qualcomm Atheros wireless cards
+ii  firmware-brcm80211                   1:20230625-2+rpt3                all          Binary firmware for Broadcom/Cypress 802.11 wireless cards
+ii  firmware-libertas                    1:20230625-2+rpt3                all          Binary firmware for Marvell wireless cards
+ii  firmware-linux-free                  20200122-1                       all          Binary firmware for various drivers in the Linux kernel
+ii  firmware-misc-nonfree                1:20230625-2+rpt3                all          Binary firmware for various drivers in the Linux kernel
+ii  firmware-realtek                     1:20230625-2+rpt3                all          Binary firmware for Realtek wired/Wi-Fi/BT adapters
+ii  flashrom                             1.3.0-2.1                        arm64        Identify, read, write, erase, and verify BIOS/ROM/flash chips
+ii  fontconfig-config                    2.14.1-4                         arm64        generic font configuration library - configuration
+ii  fonts-dejavu-core                    2.37-6                           all          Vera font family derivate with additional characters
+ii  fuse3                                3.14.0-4                         arm64        Filesystem in Userspace (3.x version)
+ii  g++                                  4:12.2.0-3                       arm64        GNU C++ compiler
+ii  g++-12                               12.2.0-14                        arm64        GNU C++ compiler
+ii  gcc                                  4:12.2.0-3                       arm64        GNU C compiler
+ii  gcc-12                               12.2.0-14                        arm64        GNU C compiler
+ii  gcc-12-base:arm64                    12.2.0-14                        arm64        GCC, the GNU Compiler Collection (base package)
+ii  gdb                                  13.1-3                           arm64        GNU Debugger
+ii  gdisk                                1.0.9-2.1                        arm64        GPT fdisk text-mode partitioning tool
+ii  gettext-base                         0.21-12                          arm64        GNU Internationalization utilities for the base system
+ii  gnupg                                2.2.40-1.1                       all          GNU privacy guard - a free PGP replacement
+ii  gnupg-l10n                           2.2.40-1.1                       all          GNU privacy guard - localization files
+ii  gnupg-utils                          2.2.40-1.1                       arm64        GNU privacy guard - utility programs
+ii  gpg                                  2.2.40-1.1                       arm64        GNU Privacy Guard -- minimalist public key operations
+ii  gpg-agent                            2.2.40-1.1                       arm64        GNU privacy guard - cryptographic agent
+ii  gpg-wks-client                       2.2.40-1.1                       arm64        GNU privacy guard - Web Key Service client
+ii  gpg-wks-server                       2.2.40-1.1                       arm64        GNU privacy guard - Web Key Service server
+ii  gpgconf                              2.2.40-1.1                       arm64        GNU privacy guard - core configuration utilities
+ii  gpgsm                                2.2.40-1.1                       arm64        GNU privacy guard - S/MIME version
+ii  gpgv                                 2.2.40-1.1                       arm64        GNU privacy guard - signature verification tool
+ii  gpiod                                1.6.3-1+b3                       arm64        Tools for interacting with Linux GPIO character device - binary
+ii  grep                                 3.8-5                            arm64        GNU grep, egrep and fgrep
+ii  groff-base                           1.22.4-10                        arm64        GNU troff text-formatting system (base system components)
+ii  gzip                                 1.12-1                           arm64        GNU compression utilities
+ii  hostname                             3.23+nmu1                        arm64        utility to set/show the host name or domain name
+ii  htop                                 3.2.2-2                          arm64        interactive processes viewer
+ii  init                                 1.65.2                           arm64        metapackage ensuring an init system is installed
+ii  init-system-helpers                  1.65.2                           all          helper tools for all init systems
+ii  initramfs-tools                      0.142+rpt1+deb12u1               all          generic modular initramfs generator (automation)
+ii  initramfs-tools-core                 0.142+rpt1+deb12u1               all          generic modular initramfs generator (core tools)
+ii  iproute2                             6.1.0-3                          arm64        networking and traffic control tools
+ii  iputils-ping                         3:20221126-1+deb12u1             arm64        Tools to test the reachability of network hosts
+ii  isc-dhcp-client                      4.4.3-P1-2                       arm64        DHCP client for automatically obtaining an IP address
+ii  isc-dhcp-common                      4.4.3-P1-2                       arm64        common manpages relevant to all of the isc-dhcp packages
+ii  iso-codes                            4.15.0-1                         all          ISO language, territory, currency, script codes and their translations
+ii  iw                                   5.19-1                           arm64        tool for configuring Linux wireless devices
+ii  kbd                                  2.5.1-1+b1                       arm64        Linux console font and keytable utilities
+ii  keyboard-configuration               1.221rpt1                        all          system-wide keyboard preferences
+ii  keyutils                             1.6.3-2                          arm64        Linux Key Management Utilities
+ii  klibc-utils                          2.0.12-1                         arm64        small utilities built with klibc for early boot
+ii  kmod                                 30+20221128-1                    arm64        tools for managing Linux kernel modules
+ii  kms++-utils                          0~git20231115~065257+9ae90ce-1   arm64        C++ library for kernel mode setting - utilities
+ii  less                                 590-2.1~deb12u2                  arm64        pager program similar to more
+ii  libabsl20220623:arm64                20220623.1-1                     arm64        extensions to the C++ standard library
+ii  libacl1:arm64                        2.3.1-3                          arm64        access control list - shared library
+ii  libalgorithm-diff-perl               1.201-1                          all          module to find differences between files
+ii  libalgorithm-diff-xs-perl:arm64      0.04-8+b1                        arm64        module to find differences between files (XS accelerated)
+ii  libalgorithm-merge-perl              0.08-5                           all          Perl module for three-way merge of textual data
+ii  libaom3:arm64                        3.6.0-1+deb12u1                  arm64        AV1 Video Codec Library
+ii  libapparmor1:arm64                   3.0.8-3                          arm64        changehat AppArmor library
+ii  libapt-pkg6.0:arm64                  2.6.1                            arm64        package management runtime library
+ii  libargon2-1:arm64                    0~20171227-0.3+deb12u1           arm64        memory-hard hashing function - runtime library
+ii  libasan8:arm64                       12.2.0-14                        arm64        AddressSanitizer -- a fast memory error detector
+ii  libasound2:arm64                     1.2.8-1+rpt1                     arm64        shared library for ALSA applications
+ii  libasound2-data                      1.2.8-1+rpt1                     all          Configuration files and profiles for ALSA drivers
+ii  libassuan0:arm64                     2.5.5-5                          arm64        IPC library for the GnuPG components
+ii  libatasmart4:arm64                   0.19-5                           arm64        ATA S.M.A.R.T. reading and parsing library
+ii  libatomic1:arm64                     12.2.0-14                        arm64        support library providing __atomic built-in functions
+ii  libatopology2:arm64                  1.2.8-1+rpt1                     arm64        shared library for handling ALSA topology definitions
+ii  libattr1:arm64                       1:2.5.1-4                        arm64        extended attribute handling - shared library
+ii  libaudit-common                      1:3.0.9-1                        all          Dynamic library for security auditing - common files
+ii  libaudit1:arm64                      1:3.0.9-1                        arm64        Dynamic library for security auditing
+ii  libavahi-common-data:arm64           0.8-10                           arm64        Avahi common data files
+ii  libavahi-common3:arm64               0.8-10                           arm64        Avahi common library
+ii  libavahi-core7:arm64                 0.8-10                           arm64        Avahi's embeddable mDNS/DNS-SD library
+ii  libavif15:arm64                      0.11.1-1                         arm64        Library for handling .avif files
+ii  libbabeltrace1:arm64                 1.5.11-1+b2                      arm64        Babeltrace conversion libraries
+ii  libbinutils:arm64                    2.40-2                           arm64        GNU binary utilities (private shared library)
+ii  libblkid1:arm64                      2.38.1-5+deb12u2                 arm64        block device ID library
+ii  libblockdev-crypto2:arm64            2.28-2                           arm64        Crypto plugin for libblockdev
+ii  libblockdev-fs2:arm64                2.28-2                           arm64        file system plugin for libblockdev
+ii  libblockdev-loop2:arm64              2.28-2                           arm64        Loop device plugin for libblockdev
+ii  libblockdev-part-err2:arm64          2.28-2                           arm64        Partition error utility functions for libblockdev
+ii  libblockdev-part2:arm64              2.28-2                           arm64        Partitioning plugin for libblockdev
+ii  libblockdev-swap2:arm64              2.28-2                           arm64        Swap plugin for libblockdev
+ii  libblockdev-utils2:arm64             2.28-2                           arm64        Utility functions for libblockdev
+ii  libblockdev2:arm64                   2.28-2                           arm64        Library for manipulating block devices
+ii  libbluetooth3:arm64                  5.66-1+rpt1+deb12u2              arm64        Library to use the BlueZ Linux Bluetooth stack
+ii  libboost-filesystem1.74.0:arm64      1.74.0+ds1-21                    arm64        filesystem operations (portable paths, iteration over directories, etc) in C++
+ii  libboost-log1.74.0                   1.74.0+ds1-21                    arm64        C++ logging library
+ii  libboost-program-options1.74.0:arm64 1.74.0+ds1-21                    arm64        program options library for C++
+ii  libboost-regex1.74.0:arm64           1.74.0+ds1-21                    arm64        regular expression library for C++
+ii  libboost-thread1.74.0:arm64          1.74.0+ds1-21                    arm64        portable C++ multi-threading
+ii  libbpf1:arm64                        1:1.1.0-1                        arm64        eBPF helper library (shared library)
+ii  libbrotli1:arm64                     1.0.9-2+b6                       arm64        library implementing brotli encoder and decoder (shared libraries)
+ii  libbsd0:arm64                        0.11.7-2                         arm64        utility functions from BSD systems - shared library
+ii  libbz2-1.0:arm64                     1.0.8-5+b1                       arm64        high-quality block-sorting file compressor library - runtime
+ii  libc-bin                             2.36-9+rpt2+deb12u9              arm64        GNU C Library: Binaries
+ii  libc-dev-bin                         2.36-9+rpt2+deb12u9              arm64        GNU C Library: Development binaries
+ii  libc-devtools                        2.36-9+rpt2+deb12u9              arm64        GNU C Library: Development tools
+ii  libc-l10n                            2.36-9+rpt2+deb12u9              all          GNU C Library: localization files
+ii  libc6:arm64                          2.36-9+rpt2+deb12u9              arm64        GNU C Library: Shared libraries
+ii  libc6-dbg:arm64                      2.36-9+rpt2+deb12u9              arm64        GNU C Library: detached debugging symbols
+ii  libc6-dev:arm64                      2.36-9+rpt2+deb12u9              arm64        GNU C Library: Development Libraries and Header Files
+ii  libcamera-ipa:arm64                  0.3.2+rpt20240927-1              arm64        complex camera support library (IPA modules)
+ii  libcamera0.3:arm64                   0.3.2+rpt20240927-1              arm64        complex camera support library
+ii  libcap-ng0:arm64                     0.8.3-1+b3                       arm64        alternate POSIX capabilities library
+ii  libcap2:arm64                        1:2.66-4                         arm64        POSIX 1003.1e capabilities (library)
+ii  libcap2-bin                          1:2.66-4                         arm64        POSIX 1003.1e capabilities (utilities)
+ii  libcbor0.8:arm64                     0.8.0-2+b1                       arm64        library for parsing and generating CBOR (RFC 7049)
+ii  libcc1-0:arm64                       12.2.0-14                        arm64        GCC cc1 plugin for GDB
+ii  libcom-err2:arm64                    1.47.0-2                         arm64        common error description library
+ii  libcrypt-dev:arm64                   1:4.4.33-2                       arm64        libcrypt development files
+ii  libcrypt1:arm64                      1:4.4.33-2                       arm64        libcrypt shared library
+ii  libcryptsetup12:arm64                2:2.6.1-4~deb12u2                arm64        disk encryption support - shared library
+ii  libctf-nobfd0:arm64                  2.40-2                           arm64        Compact C Type Format library (runtime, no BFD dependency)
+ii  libctf0:arm64                        2.40-2                           arm64        Compact C Type Format library (runtime, BFD dependency)
+ii  libcurl3-gnutls:arm64                7.88.1-10+deb12u8                arm64        easy-to-use client-side URL transfer library (GnuTLS flavour)
+ii  libcurl4:arm64                       7.88.1-10+deb12u8                arm64        easy-to-use client-side URL transfer library (OpenSSL flavour)
+ii  libdaemon0:arm64                     0.14-7.1                         arm64        lightweight C library for daemons - runtime library
+ii  libdav1d6:arm64                      1.0.0-2+deb12u1                  arm64        fast and small AV1 video stream decoder (shared library)
+ii  libdb5.3:arm64                       5.3.28+dfsg2-1                   arm64        Berkeley v5.3 Database Libraries [runtime]
+ii  libdbus-1-3:arm64                    1.14.10-1~deb12u1                arm64        simple interprocess messaging system (library)
+ii  libdconf1:arm64                      0.40.0-4                         arm64        simple configuration storage system - runtime library
+ii  libde265-0:arm64                     1.0.11-1+deb12u2                 arm64        Open H.265 video codec implementation
+ii  libdebconfclient0:arm64              0.270                            arm64        Debian Configuration Management System (C-implementation library)
+ii  libdebuginfod-common                 0.188-2.1                        all          configuration to enable the Debian debug info server
+ii  libdebuginfod1:arm64                 0.188-2.1                        arm64        library to interact with debuginfod (development files)
+ii  libdeflate0:arm64                    1.14-1                           arm64        fast, whole-buffer DEFLATE-based compression and decompression
+ii  libdevmapper1.02.1:arm64             2:1.02.185-2                     arm64        Linux Kernel Device Mapper userspace library
+ii  libdouble-conversion3:arm64          3.2.1-1                          arm64        routines to convert IEEE floats to and from strings
+ii  libdpkg-perl                         1.22.6~bpo12+rpt3                all          Dpkg perl modules
+ii  libdrm-common                        2.4.123-1~bpo12+1+rpt1           all          Userspace interface to kernel DRM services -- common files
+ii  libdrm2:arm64                        2.4.123-1~bpo12+1+rpt1           arm64        Userspace interface to kernel DRM services -- runtime
+ii  libduktape207:arm64                  2.7.0-2                          arm64        embeddable Javascript engine, library
+ii  libdvdread8:arm64                    6.1.3-1                          arm64        library for reading DVDs
+ii  libdw1:arm64                         0.188-2.1                        arm64        library that provides access to the DWARF debug information
+ii  libebml5:arm64                       1.4.4-1                          arm64        access library for the EBML format (shared library)
+ii  libedit2:arm64                       3.1-20221030-2                   arm64        BSD editline and history libraries
+ii  libelf1:arm64                        0.188-2.1                        arm64        library to read and write ELF files
+ii  libevent-core-2.1-7:arm64            2.1.12-stable-8                  arm64        Asynchronous event notification library (core)
+ii  libexif12:arm64                      0.6.24-1+b1                      arm64        library to parse EXIF files
+ii  libexpat1:arm64                      2.5.0-1+deb12u1                  arm64        XML parsing C library - runtime library
+ii  libext2fs2:arm64                     1.47.0-2                         arm64        ext2/ext3/ext4 file system libraries
+ii  libfakeroot:arm64                    1.31-1.2                         arm64        tool for simulating superuser privileges - shared libraries
+ii  libfdisk1:arm64                      2.38.1-5+deb12u2                 arm64        fdisk partitioning library
+ii  libfdt1:arm64                        1.6.1-4+b1                       arm64        Flat Device Trees manipulation library
+ii  libffi8:arm64                        3.4.4-1                          arm64        Foreign Function Interface library runtime
+ii  libfftw3-single3:arm64               3.3.10-1                         arm64        Library for computing Fast Fourier Transforms - Single precision
+ii  libfido2-1:arm64                     1.12.0-2+b1                      arm64        library for generating and verifying FIDO 2.0 objects
+ii  libfile-fcntllock-perl               0.22-4+b1                        arm64        Perl module for file locking with fcntl(2)
+ii  libflac12:arm64                      1.4.2+ds-2                       arm64        Free Lossless Audio Codec - runtime C library
+ii  libfmt9:arm64                        9.1.0+ds1-2                      arm64        fast type-safe C++ formatting library -- library
+ii  libfontconfig1:arm64                 2.14.1-4                         arm64        generic font configuration library - runtime
+ii  libfreetype6:arm64                   2.12.1+dfsg-5+deb12u3            arm64        FreeType 2 font engine, shared library files
+ii  libftdi1-2:arm64                     1.5-6+b2                         arm64        C Library to control and program the FTDI USB controllers
+ii  libfuse3-3:arm64                     3.14.0-4                         arm64        Filesystem in Userspace (library) (3.x version)
+ii  libgav1-1:arm64                      0.18.0-1+b1                      arm64        AV1 decoder developed by Google -- runtime library
+ii  libgcc-12-dev:arm64                  12.2.0-14                        arm64        GCC support library (development files)
+ii  libgcc-s1:arm64                      12.2.0-14                        arm64        GCC support library
+ii  libgcrypt20:arm64                    1.10.1-3                         arm64        LGPL Crypto library - runtime library
+ii  libgd3:arm64                         2.3.3-9                          arm64        GD Graphics Library
+ii  libgdbm-compat4:arm64                1.23-3                           arm64        GNU dbm database routines (legacy support runtime version) 
+ii  libgdbm6:arm64                       1.23-3                           arm64        GNU dbm database routines (runtime version) 
+ii  libglib2.0-0:arm64                   2.74.6-2+deb12u4                 arm64        GLib library of C routines
+ii  libglib2.0-data                      2.74.6-2+deb12u4                 all          Common files for GLib library
+ii  libgmp10:arm64                       2:6.2.1+dfsg1-1.1                arm64        Multiprecision arithmetic library
+ii  libgnutls30:arm64                    3.7.9-2+deb12u3                  arm64        GNU TLS library - main runtime library
+ii  libgomp1:arm64                       12.2.0-14                        arm64        GCC OpenMP (GOMP) support library
+ii  libgpg-error0:arm64                  1.46-1                           arm64        GnuPG development runtime library
+ii  libgpgme11:arm64                     1.18.0-3+b1                      arm64        GPGME - GnuPG Made Easy (library)
+ii  libgpiod2:arm64                      1.6.3-1+b3                       arm64        C library for interacting with Linux GPIO device - shared libraries
+ii  libgprofng0:arm64                    2.40-2                           arm64        GNU Next Generation profiler (runtime library)
+ii  libgssapi-krb5-2:arm64               1.20.1-2+deb12u2                 arm64        MIT Kerberos runtime libraries - krb5 GSS-API Mechanism
+ii  libgudev-1.0-0:arm64                 237-2                            arm64        GObject-based wrapper library for libudev
+ii  libheif1:arm64                       1.15.1-1+deb12u1                 arm64        ISO/IEC 23008-12:2017 HEIF file format decoder - shared library
+ii  libhogweed6:arm64                    3.8.1-2                          arm64        low level cryptographic library (public-key cryptos)
+ii  libhwasan0:arm64                     12.2.0-14                        arm64        AddressSanitizer -- a fast memory error detector
+ii  libicu72:arm64                       72.1-3                           arm64        International Components for Unicode
+ii  libidn2-0:arm64                      2.3.3-1+b1                       arm64        Internationalized domain names (IDNA2008/TR46) library
+ii  libip4tc2:arm64                      1.8.9-2                          arm64        netfilter libip4tc library
+ii  libisl23:arm64                       0.25-1.1                         arm64        manipulating sets and relations of integer points bounded by linear constraints
+ii  libitm1:arm64                        12.2.0-14                        arm64        GNU Transactional Memory Library
+ii  libiw30:arm64                        30~pre9-14                       arm64        Wireless tools - library
+ii  libjansson4:arm64                    2.14-2                           arm64        C library for encoding, decoding and manipulating JSON data
+ii  libjaylink0:arm64                    0.3.1-1                          arm64        library for interacting with J-Link programmers
+ii  libjbig0:arm64                       2.1-6.1                          arm64        JBIGkit libraries
+ii  libjim0.81:arm64                     0.81+dfsg0-2                     arm64        small-footprint implementation of Tcl - shared library
+ii  libjpeg62-turbo:arm64                1:2.1.5-2                        arm64        libjpeg-turbo JPEG runtime library
+ii  libjson-c5:arm64                     0.16-2                           arm64        JSON manipulation library - shared library
+ii  libk5crypto3:arm64                   1.20.1-2+deb12u2                 arm64        MIT Kerberos runtime libraries - Crypto Library
+ii  libkeyutils1:arm64                   1.6.3-2                          arm64        Linux Key Management Utilities (library)
+ii  libklibc:arm64                       2.0.12-1                         arm64        minimal libc subset for use with initramfs
+ii  libkmod2:arm64                       30+20221128-1                    arm64        libkmod shared library
+ii  libkms++0:arm64                      0~git20231115~065257+9ae90ce-1   arm64        C++ library for kernel mode setting
+ii  libkrb5-3:arm64                      1.20.1-2+deb12u2                 arm64        MIT Kerberos runtime libraries
+ii  libkrb5support0:arm64                1.20.1-2+deb12u2                 arm64        MIT Kerberos runtime libraries - Support library
+ii  libksba8:arm64                       1.6.3-2                          arm64        X.509 and CMS support library
+ii  libldap-2.5-0:arm64                  2.5.13+dfsg-5                    arm64        OpenLDAP libraries
+ii  libldap-common                       2.5.13+dfsg-5                    all          OpenLDAP common files for libraries
+ii  liblerc4:arm64                       4.0.0+ds-2                       arm64        Limited Error Raster Compression library
+ii  liblgpio1:arm64                      0.2.2-1~rpt1                     arm64        Control GPIO pins via gpiochip devices - shared libraries
+ii  liblocale-gettext-perl               1.07-5                           arm64        module using libc functions for internationalization in Perl
+ii  liblsan0:arm64                       12.2.0-14                        arm64        LeakSanitizer -- a memory leak detector (runtime)
+ii  liblttng-ust-common1:arm64           2.13.5-1                         arm64        LTTng 2.0 Userspace Tracer (common library)
+ii  liblttng-ust-ctl5:arm64              2.13.5-1                         arm64        LTTng 2.0 Userspace Tracer (trace control library)
+ii  liblttng-ust1:arm64                  2.13.5-1                         arm64        LTTng 2.0 Userspace Tracer (tracing libraries)
+ii  libluajit-5.1-2:arm64                2.1.0~beta3+git20220320+dfsg-4.1 arm64        Just in time compiler for Lua - library version
+ii  libluajit-5.1-common                 2.1.0~beta3+git20220320+dfsg-4.1 all          Just in time compiler for Lua - common files
+ii  liblz4-1:arm64                       1.9.4-1                          arm64        Fast LZ compression algorithm library - runtime
+ii  liblzma5:arm64                       5.4.1-0.2                        arm64        XZ-format compression library
+ii  libmagic-mgc                         1:5.44-3                         arm64        File type determination library using "magic" numbers (compiled magic file)
+ii  libmagic1:arm64                      1:5.44-3                         arm64        Recognize the type of data in a file using "magic" numbers - library
+ii  libmatroska7:arm64                   1.7.1-1                          arm64        extensible open standard audio/video container format (shared library)
+ii  libmbim-glib4:arm64                  1.28.2-1                         arm64        Support library to use the MBIM protocol
+ii  libmbim-proxy                        1.28.2-1                         arm64        Proxy to communicate with MBIM ports
+ii  libmbim-utils                        1.28.2-1                         arm64        Utilities to use the MBIM protocol from the command line
+ii  libmd0:arm64                         1.0.4-2                          arm64        message digest functions from BSD systems - shared library
+ii  libmm-glib0:arm64                    1.20.4-1                         arm64        D-Bus service for managing modems - shared libraries
+ii  libmnl0:arm64                        1.0.4-3                          arm64        minimalistic Netlink communication library
+ii  libmount1:arm64                      2.38.1-5+deb12u2                 arm64        device mounting library
+ii  libmpc3:arm64                        1.3.1-1                          arm64        multiple precision complex floating-point library
+ii  libmpfr6:arm64                       4.2.0-1                          arm64        multiple precision floating-point computation
+ii  libmtp-common                        1.1.20-1                         all          Media Transfer Protocol (MTP) common files
+ii  libmtp-runtime                       1.1.20-1                         arm64        Media Transfer Protocol (MTP) runtime tools
+ii  libmtp9:arm64                        1.1.20-1                         arm64        Media Transfer Protocol (MTP) library
+ii  libncursesw6:arm64                   6.4-4                            arm64        shared libraries for terminal handling (wide character support)
+ii  libndp0:arm64                        1.8-1+deb12u1                    arm64        Library for Neighbor Discovery Protocol
+ii  libnetfilter-conntrack3:arm64        1.0.9-3                          arm64        Netfilter netlink-conntrack library
+ii  libnettle8:arm64                     3.8.1-2                          arm64        low level cryptographic library (symmetric and one-way cryptos)
+ii  libnewt0.52:arm64                    0.52.23-1+b1                     arm64        Not Erik's Windowing Toolkit - text mode windowing with slang
+ii  libnfnetlink0:arm64                  1.0.2-2                          arm64        Netfilter netlink library
+ii  libnfsidmap1:arm64                   1:2.6.2-4                        arm64        NFS idmapping library
+ii  libnftables1:arm64                   1.0.6-2+deb12u2                  arm64        Netfilter nftables high level userspace API library
+ii  libnftnl11:arm64                     1.2.4-2                          arm64        Netfilter nftables userspace API library
+ii  libnghttp2-14:arm64                  1.52.0-1+deb12u2                 arm64        library implementing HTTP/2 protocol (shared library)
+ii  libnl-3-200:arm64                    3.7.0-0.2+b1                     arm64        library for dealing with netlink sockets
+ii  libnl-genl-3-200:arm64               3.7.0-0.2+b1                     arm64        library for dealing with netlink sockets - generic netlink
+ii  libnl-route-3-200:arm64              3.7.0-0.2+b1                     arm64        library for dealing with netlink sockets - route interface
+ii  libnm0:arm64                         1.42.4-1+rpt1                    arm64        GObject-based client library for NetworkManager
+ii  libnpth0:arm64                       1.6-3                            arm64        replacement for GNU Pth using system threads
+ii  libnsl-dev:arm64                     1.3.0-2                          arm64        libnsl development files
+ii  libnsl2:arm64                        1.3.0-2                          arm64        Public client interface for NIS(YP) and NIS+
+ii  libnspr4:arm64                       2:4.35-1                         arm64        NetScape Portable Runtime Library
+ii  libnss-mdns:arm64                    0.15.1-3                         arm64        NSS module for Multicast DNS name resolution
+ii  libnss3:arm64                        2:3.87.1-1+deb12u1               arm64        Network Security Service libraries
+ii  libntfs-3g89:arm64                   1:2022.10.3-1+deb12u2            arm64        read/write NTFS driver for FUSE (runtime library)
+ii  libnuma1:arm64                       2.0.16-1                         arm64        Libraries for controlling NUMA policy
+ii  libogg0:arm64                        1.3.5-3                          arm64        Ogg bitstream library
+ii  libossp-uuid16:arm64                 1.6.2-1.5+b11                    arm64        OSSP uuid ISO-C and C++ - shared library
+ii  libp11-kit0:arm64                    0.24.1-2                         arm64        library for loading and coordinating access to PKCS#11 modules - runtime
+ii  libpam-chksshpwd:arm64               1.5.2-6+rpt2+deb12u1             arm64        PAM module to enable SSH password checking support
+ii  libpam-modules:arm64                 1.5.2-6+rpt2+deb12u1             arm64        Pluggable Authentication Modules for PAM
+ii  libpam-modules-bin                   1.5.2-6+rpt2+deb12u1             arm64        Pluggable Authentication Modules for PAM - helper binaries
+ii  libpam-runtime                       1.5.2-6+rpt2+deb12u1             all          Runtime support for the PAM library
+ii  libpam-systemd:arm64                 252.31-1~deb12u1                 arm64        system and service manager - PAM module
+ii  libpam0g:arm64                       1.5.2-6+rpt2+deb12u1             arm64        Pluggable Authentication Modules library
+ii  libparted-fs-resize0:arm64           3.5-3                            arm64        disk partition manipulator - shared FS resizing library
+ii  libparted2:arm64                     3.5-3                            arm64        disk partition manipulator - shared library
+ii  libpcap0.8:arm64                     1.10.3-1                         arm64        system interface for user-level packet capture
+ii  libpci3:arm64                        1:3.9.0-4                        arm64        PCI utilities (shared library)
+ii  libpcre2-16-0:arm64                  10.42-1                          arm64        New Perl Compatible Regular Expression Library - 16 bit runtime files
+ii  libpcre2-8-0:arm64                   10.42-1                          arm64        New Perl Compatible Regular Expression Library- 8 bit runtime files
+ii  libpcsclite1:arm64                   1.9.9-2                          arm64        Middleware to access a smart card using PC/SC (library)
+ii  libperl5.36:arm64                    5.36.0-7+deb12u1                 arm64        shared Perl library
+ii  libpigpio-dev                        1.79-1+rpt1                      arm64        Client tools for Raspberry Pi GPIO control
+ii  libpigpio1                           1.79-1+rpt1                      arm64        Library for Raspberry Pi GPIO control
+ii  libpigpiod-if-dev                    1.79-1+rpt1                      arm64        Development headers for client libraries for Raspberry Pi GPIO control
+ii  libpigpiod-if1                       1.79-1+rpt1                      arm64        Client library for Raspberry Pi GPIO control (deprecated)
+ii  libpigpiod-if2-1                     1.79-1+rpt1                      arm64        Client library for Raspberry Pi GPIO control
+ii  libpipeline1:arm64                   1.5.7-1                          arm64        Unix process pipeline manipulation library
+ii  libpisp-common                       1.0.7-1                          all          Helper library for the PiSP hardware block (data files)
+ii  libpisp1:arm64                       1.0.7-1                          arm64        Helper library for the PiSP hardware block (runtime)
+ii  libpkgconf3:arm64                    1.8.1-1                          arm64        shared library for pkgconf
+ii  libpng16-16:arm64                    1.6.39-2                         arm64        PNG library - runtime (version 1.6)
+ii  libpolkit-agent-1-0:arm64            122-3                            arm64        polkit Authentication Agent API
+ii  libpolkit-gobject-1-0:arm64          122-3                            arm64        polkit Authorization API
+ii  libpopt0:arm64                       1.19+dfsg-1                      arm64        lib for parsing cmdline parameters
+ii  libproc2-0:arm64                     2:4.0.2-3                        arm64        library for accessing process information from /proc
+ii  libpsl5:arm64                        0.21.2-1                         arm64        Library for Public Suffix List (shared libraries)
+ii  libpugixml1v5:arm64                  1.13-0.2                         arm64        Light-weight C++ XML processing library
+ii  libpython3-stdlib:arm64              3.11.2-1+b1                      arm64        interactive high-level object-oriented language (default python3 version)
+ii  libpython3.11:arm64                  3.11.2-6+deb12u4                 arm64        Shared Python runtime library (version 3.11)
+ii  libpython3.11-minimal:arm64          3.11.2-6+deb12u4                 arm64        Minimal subset of the Python language (version 3.11)
+ii  libpython3.11-stdlib:arm64           3.11.2-6+deb12u4                 arm64        Interactive high-level object-oriented language (standard library, version 3.11)
+ii  libqmi-glib5:arm64                   1.32.2-1                         arm64        Support library to use the Qualcomm MSM Interface (QMI) protocol
+ii  libqmi-proxy                         1.32.2-1                         arm64        Proxy to communicate with QMI ports
+ii  libqmi-utils                         1.32.2-1                         arm64        Utilities to use the QMI protocol from the command line
+ii  libqrtr-glib0:arm64                  1.2.2-1                          arm64        Support library to use the QRTR protocol
+ii  libqt5core5a:arm64                   5.15.8+dfsg-11+deb12u2           arm64        Qt 5 core module
+ii  librav1e0:arm64                      0.5.1-6                          arm64        Fastest and safest AV1 encoder - shared library
+ii  libreadline8:arm64                   8.2-1.3                          arm64        GNU readline and history libraries, run-time libraries
+ii  librtmp1:arm64                       2.4+20151223.gitfa8646d.1-2+b2   arm64        toolkit for RTMP streams (shared library)
+ii  libsamplerate0:arm64                 0.2.2-3                          arm64        Audio sample rate conversion library
+ii  libsasl2-2:arm64                     2.1.28+dfsg-10                   arm64        Cyrus SASL - authentication abstraction library
+ii  libsasl2-modules:arm64               2.1.28+dfsg-10                   arm64        Cyrus SASL - pluggable authentication modules
+ii  libsasl2-modules-db:arm64            2.1.28+dfsg-10                   arm64        Cyrus SASL - pluggable authentication modules (DB)
+ii  libseccomp2:arm64                    2.5.4-1+deb12u1                  arm64        high level interface to Linux seccomp filter
+ii  libselinux1:arm64                    3.4-1+b6                         arm64        SELinux runtime shared libraries
+ii  libsemanage-common                   3.4-1                            all          Common files for SELinux policy management libraries
+ii  libsemanage2:arm64                   3.4-1+b5                         arm64        SELinux policy management library
+ii  libsepol2:arm64                      3.4-2.1                          arm64        SELinux library for manipulating binary security policies
+ii  libslang2:arm64                      2.3.3-3                          arm64        S-Lang programming library - runtime version
+ii  libsmartcols1:arm64                  2.38.1-5+deb12u2                 arm64        smart column output alignment library
+ii  libsource-highlight-common           3.1.9-4.2                        all          architecture-independent files for source highlighting library
+ii  libsource-highlight4v5:arm64         3.1.9-4.2+b3                     arm64        source highlighting library
+ii  libsqlite3-0:arm64                   3.40.1-2+deb12u1                 arm64        SQLite 3 shared library
+ii  libss2:arm64                         1.47.0-2                         arm64        command-line interface parsing library
+ii  libssh2-1:arm64                      1.10.0-3+b1                      arm64        SSH2 client-side library
+ii  libssl3:arm64                        3.0.15-1~deb12u1+rpt1            arm64        Secure Sockets Layer toolkit - shared libraries
+ii  libstdc++-12-dev:arm64               12.2.0-14                        arm64        GNU Standard C++ Library v3 (development files)
+ii  libstdc++6:arm64                     12.2.0-14                        arm64        GNU Standard C++ Library v3
+ii  libsvtav1enc1:arm64                  1.4.1+dfsg-1                     arm64        Scalable Video Technology for AV1 (libsvtav1enc shared library)
+ii  libsystemd-shared:arm64              252.31-1~deb12u1                 arm64        systemd shared private library
+ii  libsystemd0:arm64                    252.31-1~deb12u1                 arm64        systemd utility library
+ii  libtalloc2:arm64                     2.4.0-f2                         arm64        hierarchical pool based memory allocator
+ii  libtasn1-6:arm64                     4.19.0-2                         arm64        Manage ASN.1 structures (runtime)
+ii  libteamdctl0:arm64                   1.31-1                           arm64        library for communication with `teamd` process
+ii  libtext-charwidth-perl:arm64         0.04-11                          arm64        get display widths of characters on the terminal
+ii  libtext-iconv-perl:arm64             1.7-8                            arm64        module to convert between character sets in Perl
+ii  libtext-wrapi18n-perl                0.06-10                          all          internationalized substitute of Text::Wrap
+ii  libtiff6:arm64                       4.5.0-6+deb12u1                  arm64        Tag Image File Format (TIFF) library
+ii  libtinfo6:arm64                      6.4-4                            arm64        shared low-level terminfo library for terminal handling
+ii  libtirpc-common                      1.3.3+ds-1                       all          transport-independent RPC library - common files
+ii  libtirpc-dev:arm64                   1.3.3+ds-1                       arm64        transport-independent RPC library - development files
+ii  libtirpc3:arm64                      1.3.3+ds-1                       arm64        transport-independent RPC library
+ii  libtsan2:arm64                       12.2.0-14                        arm64        ThreadSanitizer -- a Valgrind-based detector of data races (runtime)
+ii  libubsan1:arm64                      12.2.0-14                        arm64        UBSan -- undefined behaviour sanitizer (runtime)
+ii  libuchardet0:arm64                   0.0.7-1                          arm64        universal charset detection library - shared library
+ii  libudev1:arm64                       252.31-1~deb12u1                 arm64        libudev shared library
+ii  libudisks2-0:arm64                   2.9.4-4                          arm64        GObject based library to access udisks2
+ii  libunistring2:arm64                  1.0-2                            arm64        Unicode string library for C
+ii  libunwind8:arm64                     1.6.2-3                          arm64        library to determine the call-chain of a program - runtime
+ii  libusb-1.0-0:arm64                   2:1.0.26-1                       arm64        userspace USB programming library
+ii  libuuid1:arm64                       2.38.1-5+deb12u2                 arm64        Universally Unique ID library
+ii  libv4l-0:arm64                       1.22.1-5+b2                      arm64        Collection of video4linux support libraries
+ii  libv4l2rds0:arm64                    1.22.1-5+b2                      arm64        Video4Linux Radio Data System (RDS) decoding library
+ii  libv4lconvert0:arm64                 1.22.1-5+b2                      arm64        Video4linux frame format conversion library
+ii  libvolume-key1:arm64                 0.3.12-5+b1                      arm64        Library for manipulating storage encryption keys and passphrases
+ii  libvorbis0a:arm64                    1.3.7-1                          arm64        decoder library for Vorbis General Audio Compression Codec
+ii  libwbclient0:arm64                   2:4.17.12+dfsg-0+deb12u1         arm64        Samba winbind client library
+ii  libwebp7:arm64                       1.2.4-0.2+deb12u1                arm64        Lossy compression of digital photographic images
+ii  libwrap0:arm64                       7.6.q-32                         arm64        Wietse Venema's TCP wrappers library
+ii  libx11-6:arm64                       2:1.8.4-2+deb12u2                arm64        X11 client-side library
+ii  libx11-data                          2:1.8.4-2+deb12u2                all          X11 client-side library
+ii  libx265-199:arm64                    3.5-2+b1                         arm64        H.265/HEVC video stream encoder (shared library)
+ii  libxau6:arm64                        1:1.0.9-1                        arm64        X11 authorisation library
+ii  libxcb1:arm64                        1.15-1                           arm64        X C Binding
+ii  libxdmcp6:arm64                      1:1.1.2-3                        arm64        X11 Display Manager Control Protocol library
+ii  libxext6:arm64                       2:1.3.4-1+b1                     arm64        X11 miscellaneous extension library
+ii  libxml2:arm64                        2.9.14+dfsg-1.3~deb12u1          arm64        GNOME XML library
+ii  libxmuu1:arm64                       2:1.1.3-3                        arm64        X11 miscellaneous micro-utility library
+ii  libxpm4:arm64                        1:3.5.12-1.1+deb12u1             arm64        X11 pixmap library
+ii  libxtables12:arm64                   1.8.9-2                          arm64        netfilter xtables library
+ii  libxxhash0:arm64                     0.8.1-1                          arm64        shared library for xxhash
+ii  libyaml-0-2:arm64                    0.2.5-1                          arm64        Fast YAML 1.1 parser and emitter library
+ii  libyuv0:arm64                        0.0~git20230123.b2528b0-1        arm64        Library for YUV scaling (shared library)
+ii  libzstd1:arm64                       1.5.4+dfsg2-5                    arm64        fast lossless compression algorithm
+ii  linux-base                           4.9                              all          Linux image base package
+ii  linux-headers-6.6.51+rpt-common-rpi  1:6.6.51-1+rpt3                  all          Common header files for Linux 6.6.51+rpt-rpi
+ii  linux-headers-6.6.51+rpt-rpi-2712    1:6.6.51-1+rpt3                  arm64        Header files for Linux 6.6.51+rpt-rpi-2712
+ii  linux-headers-6.6.51+rpt-rpi-v8      1:6.6.51-1+rpt3                  arm64        Header files for Linux 6.6.51+rpt-rpi-v8
+ii  linux-headers-rpi-2712               1:6.6.51-1+rpt3                  arm64        Header files for Linux rpi-2712 configuration (meta-package)
+ii  linux-headers-rpi-v8                 1:6.6.51-1+rpt3                  arm64        Header files for Linux rpi-v8 configuration (meta-package)
+ii  linux-image-6.6.51+rpt-rpi-2712      1:6.6.51-1+rpt3                  arm64        Linux 6.6 for Raspberry Pi 2712, Raspberry Pi
+ii  linux-image-6.6.51+rpt-rpi-v8        1:6.6.51-1+rpt3                  arm64        Linux 6.6 for Raspberry Pi v8, Raspberry Pi
+ii  linux-image-rpi-2712                 1:6.6.51-1+rpt3                  arm64        Linux for Raspberry Pi 2712 (meta-package)
+ii  linux-image-rpi-v8                   1:6.6.51-1+rpt3                  arm64        Linux for Raspberry Pi v8 (meta-package)
+ii  linux-kbuild-6.6.51+rpt              1:6.6.51-1+rpt3                  arm64        Kbuild infrastructure for Linux 6.6.51+rpt
+ii  linux-libc-dev                       1:6.6.51-1+rpt3                  all          Linux support headers for userspace development
+ii  locales                              2.36-9+rpt2+deb12u9              all          GNU C Library: National Language (locale) data [support]
+ii  login                                1:4.13+dfsg1-1+b1                arm64        system login tools
+ii  logrotate                            3.21.0-1                         arm64        Log rotation utility
+ii  logsave                              1.47.0-2                         arm64        save the output of a command in a log file
+ii  lsb-release                          12.0-1                           all          Linux Standard Base version reporting utility (minimal implementation)
+ii  lua5.1                               5.1.5-9                          arm64        Simple, extensible, embeddable programming language
+ii  luajit                               2.1.0~beta3+git20220320+dfsg-4.1 arm64        Just in time compiler for Lua programming language version 5.1
+ii  make                                 4.3-4.1                          arm64        utility for directing compilation
+ii  man-db                               2.11.2-2                         arm64        tools for reading manual pages
+ii  manpages                             6.03-2                           all          Manual pages about using a GNU/Linux system
+ii  manpages-dev                         6.03-2                           all          Manual pages about using GNU/Linux for development
+ii  mawk                                 1.3.4.20200120-3.1               arm64        Pattern scanning and text processing language
+ii  media-types                          10.0.0                           all          List of standard media types and their usual file extension
+ii  mkvtoolnix                           74.0.0-1                         arm64        Set of command-line tools to work with Matroska files
+ii  modemmanager                         1.20.4-1                         arm64        D-Bus service for managing modems
+ii  mount                                2.38.1-5+deb12u2                 arm64        tools for mounting and manipulating filesystems
+ii  nano                                 7.2-1+deb12u1                    arm64        small, friendly text editor inspired by Pico
+ii  ncdu                                 1.18-0.2                         arm64        ncurses disk usage viewer
+ii  ncurses-base                         6.4-4                            all          basic terminal type definitions
+ii  ncurses-bin                          6.4-4                            arm64        terminal-related programs and man pages
+ii  ncurses-term                         6.4-4                            all          additional terminal type definitions
+ii  net-tools                            2.10-0.1                         arm64        NET-3 networking toolkit
+ii  netbase                              6.4                              all          Basic TCP/IP networking system
+ii  network-manager                      1.42.4-1+rpt1                    arm64        network management framework (daemon and userspace tools)
+ii  nfs-common                           1:2.6.2-4                        arm64        NFS support files common to client and server
+ii  nftables                             1.0.6-2+deb12u2                  arm64        Program to control packet filtering rules by Netfilter project
+ii  ntfs-3g                              1:2022.10.3-1+deb12u2            arm64        read/write NTFS driver for FUSE
+ii  openssh-client                       1:9.2p1-2+deb12u3                arm64        secure shell (SSH) client, for secure access to remote machines
+ii  openssh-server                       1:9.2p1-2+deb12u3                arm64        secure shell (SSH) server, for secure access from remote machines
+ii  openssh-sftp-server                  1:9.2p1-2+deb12u3                arm64        secure shell (SSH) sftp server module, for SFTP access from remote machines
+ii  openssl                              3.0.15-1~deb12u1+rpt1            arm64        Secure Sockets Layer toolkit - cryptographic utility
+ii  p7zip                                16.02+dfsg-8                     arm64        7zr file archiver with high compression ratio
+ii  p7zip-full                           16.02+dfsg-8                     arm64        7z and 7za file archivers with high compression ratio
+ii  parted                               3.5-3                            arm64        disk partition manipulator
+ii  passwd                               1:4.13+dfsg1-1+b1                arm64        change and administer password and group data
+ii  pastebinit                           1.6.2-1+rpt1                     all          command-line pastebin client
+ii  patch                                2.7.6-7                          arm64        Apply a diff file to an original
+ii  pci.ids                              0.0~2023.04.11-1                 all          PCI ID Repository
+ii  pciutils                             1:3.9.0-4                        arm64        PCI utilities
+ii  perl                                 5.36.0-7+deb12u1                 arm64        Larry Wall's Practical Extraction and Report Language
+ii  perl-base                            5.36.0-7+deb12u1                 arm64        minimal Perl system
+ii  perl-modules-5.36                    5.36.0-7+deb12u1                 all          Core Perl modules
+ii  pi-bluetooth                         0.1.20                           all          Raspberry Pi 3 bluetooth
+ii  pigpio                               1.79-1+rpt1                      arm64        Raspberry Pi GPIO control transitional package.
+ii  pigpio-tools                         1.79-1+rpt1                      arm64        Client tools for Raspberry Pi GPIO control
+ii  pigpiod                              1.79-1+rpt1                      arm64        Client tools for Raspberry Pi GPIO control
+ii  pinentry-curses                      1.2.1-1                          arm64        curses-based PIN or pass-phrase entry dialog for GnuPG
+ii  pkexec                               122-3                            arm64        run commands as another user with polkit authorization
+ii  pkg-config:arm64                     1.8.1-1                          arm64        manage compile and link flags for libraries (transitional package)
+ii  pkgconf:arm64                        1.8.1-1                          arm64        manage compile and link flags for libraries
+ii  pkgconf-bin                          1.8.1-1                          arm64        manage compile and link flags for libraries (binaries)
+ii  policykit-1                          122-3                            arm64        transitional package for polkitd and pkexec
+ii  polkitd                              122-3                            arm64        framework for managing administrative policies and privileges
+ii  polkitd-pkla                         122-3                            arm64        Legacy "local authority" (.pkla) backend for polkitd
+ii  ppp                                  2.4.9-1+1.1+b1                   arm64        Point-to-Point Protocol (PPP) - daemon
+ii  procps                               2:4.0.2-3                        arm64        /proc file system utilities
+ii  psmisc                               23.6-1                           arm64        utilities that use the proc file system
+ii  publicsuffix                         20230209.2326-1                  all          accurate, machine-readable list of domain name suffixes
+ii  python-apt-common                    2.6.0                            all          Python interface to libapt-pkg (locales)
+ii  python-is-python3                    3.11.2-1+deb12u1                 all          symlinks /usr/bin/python to python3
+ii  python3                              3.11.2-1+b1                      arm64        interactive high-level object-oriented language (default python3 version)
+ii  python3-apt                          2.6.0                            arm64        Python 3 interface to libapt-pkg
+ii  python3-certifi                      2022.9.24-1                      all          root certificates for validating SSL certs and verifying TLS hosts (python3)
+ii  python3-chardet                      5.1.0+dfsg-2                     all          Universal Character Encoding Detector (Python3)
+ii  python3-charset-normalizer           3.0.1-2                          all          charset, encoding and language detection (Python 3)
+ii  python3-colorzero                    2.0-2                            all          Construct, convert, and manipulate colors in a Pythonic manner.
+ii  python3-debconf                      1.5.82                           all          interact with debconf from Python 3
+ii  python3-distro                       1.8.0-1                          all          Linux OS platform information API
+ii  python3-distutils                    3.11.2-3                         all          distutils package for Python 3.x
+ii  python3-gpiozero                     2.0.1-0+rpt1                     all          Simple API for controlling devices attached to a Pi's GPIO pins
+ii  python3-idna                         3.3-1+deb12u1                    all          Python IDNA2008 (RFC 5891) handling (Python 3)
+ii  python3-lgpio                        0.2.2-1~rpt1                     arm64        Control GPIO pins via gpiochip devices - python3 bindings
+ii  python3-lib2to3                      3.11.2-3                         all          Interactive high-level object-oriented language (lib2to3)
+ii  python3-libgpiod:arm64               1.6.3-1+b3                       arm64        Python bindings for libgpiod (Python 3)
+ii  python3-minimal                      3.11.2-1+b1                      arm64        minimal subset of the Python language (default python3 version)
+ii  python3-pigpio                       1.79-1+rpt1                      all          Python module which talks to the pigpio daemon (Python 3)
+ii  python3-pip-whl                      23.0.1+dfsg-1+rpt1               all          Python package installer (pip wheel)
+ii  python3-pkg-resources                66.1.1-1                         all          Package Discovery and Resource Access using pkg_resources
+ii  python3-pycryptodome                 3.11.0+dfsg1-4                   arm64        cryptographic Python library (Python 3)
+ii  python3-requests                     2.28.1+dfsg-1                    all          elegant and simple HTTP library for Python3, built for human beings
+ii  python3-rpi-lgpio                    0.6-0~rpt1                       all          Compatibility shim for lgpio emulating the RPi.GPIO API
+ii  python3-setuptools-whl               66.1.1-1                         all          Python Distutils Enhancements (wheel package)
+ii  python3-six                          1.16.0-4                         all          Python 2 and 3 compatibility library
+ii  python3-smbus2                       0.4.2-1                          arm64        another pure Python implementation of the python-smbus package
+ii  python3-spidev                       20200602~200721-1+bookworm       arm64        Bindings for Linux SPI access through spidev (Python 3)
+ii  python3-toml                         0.10.2-1                         all          library for Tom's Obvious, Minimal Language - Python 3.x
+ii  python3-urllib3                      1.26.12-1                        all          HTTP library with thread-safe connection pooling for Python3
+ii  python3-venv                         3.11.2-1+b1                      arm64        venv module for python3 (default python3 version)
+ii  python3.11                           3.11.2-6+deb12u4                 arm64        Interactive high-level object-oriented language (version 3.11)
+ii  python3.11-minimal                   3.11.2-6+deb12u4                 arm64        Minimal subset of the Python language (version 3.11)
+ii  python3.11-venv                      3.11.2-6+deb12u4                 arm64        Interactive high-level object-oriented language (pyvenv binary, version 3.11)
+ii  raspberrypi-archive-keyring          2021.1.1+rpt1                    all          GnuPG archive keys of the Raspberry Pi OS archive
+ii  raspberrypi-net-mods                 1.4.2                            all          Network configuration for the Raspberry Pi UI
+ii  raspberrypi-sys-mods                 20241111                         arm64        System tweaks for the Raspberry Pi
+ii  raspi-config                         20241119                         all          Raspberry Pi configuration tool
+ii  raspi-firmware                       1:1.20240924-2                   all          Raspberry Pi family GPU firmware and bootloaders
+ii  raspi-gpio                           0.20231127                       arm64        Dump the state of the BCM270x GPIOs
+ii  raspi-utils                          20240903-1                       all          Collection of scripts and simple applications
+ii  raspi-utils-core                     20240903-1                       arm64        Collection of scripts and simple applications
+ii  raspi-utils-dt                       20240903-1                       arm64        Device Tree overlay utilities
+ii  raspi-utils-eeprom                   20240903-1                       arm64        Tools for creating and managing EEPROMs for HAT+ and HAT board
+ii  raspi-utils-otp                      20240903-1                       all          Tools for reading and setting Raspberry Pi OTP bits
+ii  raspinfo                             20240903-1                       all          Prints information about the Raspberry Pi for bug reports
+ii  readline-common                      8.2-1.3                          all          GNU readline and history libraries, common files
+ii  rfkill                               2.38.1-5+deb12u2                 arm64        tool for enabling and disabling wireless devices
+ii  rpcbind                              1.2.6-6+b1                       arm64        converts RPC program numbers into universal addresses
+ii  rpcsvc-proto                         1.4.3-1                          arm64        RPC protocol compiler and definitions
+ii  rpi-eeprom                           26.4-1                           all          Raspberry Pi 4/5 boot EEPROM updater
+ii  rpi-update                           20230904                         all          Raspberry Pi firmware updating tool
+ii  rpicam-apps-lite                     1.5.2-2                          arm64        rpicam-apps-lite
+ii  rsync                                3.2.7-1                          arm64        fast, versatile, remote (and local) file-copying tool
+ii  runit-helper                         2.15.2                           all          dh-runit implementation detail
+ii  sed                                  4.9-1                            arm64        GNU stream editor for filtering/transforming text
+ii  sensible-utils                       0.0.17+nmu1                      all          Utilities for sensible alternative selection
+ii  sgml-base                            1.31                             all          SGML infrastructure and SGML catalog file support
+ii  shared-mime-info                     2.2-1                            arm64        FreeDesktop.org shared MIME database and spec
+ii  ssh                                  1:9.2p1-2+deb12u3                all          secure shell client and server (metapackage)
+ii  ssh-import-id                        5.10-1                           all          securely retrieve an SSH public key and install it locally
+ii  strace                               6.1-0.1                          arm64        System call tracer
+ii  sudo                                 1.9.13p3-1+deb12u1               arm64        Provide limited super user privileges to specific users
+ii  systemd                              252.31-1~deb12u1                 arm64        system and service manager
+ii  systemd-sysv                         252.31-1~deb12u1                 arm64        system and service manager - SysV compatibility symlinks
+ii  systemd-timesyncd                    252.31-1~deb12u1                 arm64        minimalistic service to synchronize local time with NTP servers
+ii  sysvinit-utils                       3.06-4                           arm64        System-V-like utilities
+ii  tar                                  1.34+dfsg-1.2+deb12u1            arm64        GNU version of the tar archiving utility
+ii  tasksel                              3.73                             all          tool for selecting tasks for installation on Debian systems
+ii  tasksel-data                         3.73                             all          official tasks used for installation of Debian systems
+ii  triggerhappy                         0.5.0-1.1+b2                     arm64        global hotkey daemon for Linux
+ii  tzdata                               2024a-0+deb12u1                  all          time zone and daylight-saving time data
+ii  ucf                                  3.0043+nmu1                      all          Update Configuration File(s): preserve user changes to config files
+ii  udev                                 252.31-1~deb12u1                 arm64        /dev/ and hotplug management daemon
+ii  udisks2                              2.9.4-4                          arm64        D-Bus service to access and manipulate storage devices
+ii  unzip                                6.0-28                           arm64        De-archiver for .zip files
+ii  usb-modeswitch                       2.6.1-3+b1                       arm64        mode switching tool for controlling "flip flop" USB devices
+ii  usb-modeswitch-data                  20191128-5                       all          mode switching data for usb-modeswitch
+ii  usbutils                             1:014-1+deb12u1                  arm64        Linux USB utilities
+ii  userconf-pi                          0.10                             all          Raspberry Pi tool to rename a user
+ii  usr-is-merged                        37~deb12u1                       all          Transitional package to assert a merged-/usr system
+ii  util-linux                           2.38.1-5+deb12u2                 arm64        miscellaneous system utilities
+ii  util-linux-extra                     2.38.1-5+deb12u2                 arm64        interactive login tools
+ii  uuid                                 1.6.2-1.5+b11                    arm64        Universally Unique Identifier Command-Line Tool
+ii  v4l-utils                            1.22.1-5+b2                      arm64        Collection of command line video4linux utilities
+ii  vim-common                           2:9.0.1378-2                     all          Vi IMproved - Common files
+ii  vim-tiny                             2:9.0.1378-2                     arm64        Vi IMproved - enhanced vi editor - compact version
+ii  wget                                 1.21.3-1+b1                      arm64        retrieves files from the web
+ii  whiptail                             0.52.23-1+b1                     arm64        Displays user-friendly dialog boxes from shell scripts
+ii  wireless-regdb                       2022.06.06-1                     all          wireless regulatory database for Linux
+ii  wireless-tools                       30~pre9-14                       arm64        Tools for manipulating Linux Wireless Extensions
+ii  wpasupplicant                        2:2.10-12+deb12u2                arm64        client support for WPA and WPA2 (IEEE 802.11i)
+ii  xauth                                1:1.1.2-1                        arm64        X authentication utility
+ii  xdg-user-dirs                        0.18-1                           arm64        tool to manage well known user directories
+ii  xkb-data                             2.35.1-1                         all          X Keyboard Extension (XKB) configuration data
+ii  xml-core                             0.18+nmu1                        all          XML infrastructure and XML catalog file support
+ii  xz-utils                             5.4.1-0.2                        arm64        XZ-format compression utilities
+ii  zip                                  3.0-13                           arm64        Archiver for .zip files
+ii  zlib1g:arm64                         1:1.2.13.dfsg-1+rpt1             arm64        compression library - runtime
+ii  zstd                                 1.5.4+dfsg2-5                    arm64        fast lossless compression algorithm -- CLI tool
