@@ -2,9 +2,9 @@
 
 ## Initial Setup
 
-1. Download the .zip for the desired image. Place the .info and .zip.sha256 into the image/ folder.
-2. Extract the .img from the .zip.
-3. Insert the MicroSD card which is in the Raspberry Pi into a PC, likely using a MicroSD -> USB or MicroSD -> SD converter.
+1. Download the .img.xz for the desired image. Place the .info, .img.xz.sha1, .img.xz.sha256, and .img.xz.sig into the image/ folder.
+2. Extract the .img from the .img.xz.
+3. Insert the MicroSD card for the Raspberry Pi into a PC, likely using a MicroSD -> USB or MicroSD -> SD converter.
 4. Using [Rufus](https://rufus.ie/en/) install the .img onto the MicroSD card.
 5. Create an empty file named `ssh` in the root of the MicroSD card's "boot" volume.
 6. Insert the MicroSD card back into the Raspberry Pi and plug it in.
